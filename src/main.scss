@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Nova+Mono');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700');
+
+$dark-green: #6DB43D;
+$light-green: #C2D634;
+$navy: #1E3679;
+$orange: #F96F3B;
+$grey: #CDD4D1;
+$white: #F9F9F9;
+
+$header: 'Nova Mono', sans-serif;
+$sub-header: 'Open Sans', sans-serif;
+$paragraph: 'Open Sans', sans-serif;
+
+h1 {
+    font: 45% $header;
+    color: $dark-green;
+}
+
+h2, h3, h4, h5, h6  {
+    font-family: $sub-header;
+    color: $light-green;
+}
+
+p {
+    font-family: $paragraph;
+    color: $navy;
+}
+// P STYLING IS SUBJECT TO CHANGE WITH BACKGROUND
