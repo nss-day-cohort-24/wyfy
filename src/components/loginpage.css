@@ -1,0 +1,14 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+.inputStyle {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+}
+.inputStyle:focus {
+    outline: none;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+}
