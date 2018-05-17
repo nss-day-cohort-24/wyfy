@@ -27,8 +27,8 @@ class NashData extends Component {
         )
     }
     render() {
-        console.log(this.state.data,"thisstate");
-        if(this.state.DataIsLoaded == true){
+        console.log(this.state,"thisstate");
+        if(this.state.DataIsLoaded === true){
         const wifiAddresses = this.state.data.map((item, index) =>
         <li key={index}>{item.site_name}<br />{item.street_address}<br />{item.city}, {item.zip_code}</li>
     )

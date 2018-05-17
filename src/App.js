@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import NashData from './components/NashData';
-import Navigation from './Nav';
-import MapContainer from './Map';
+import Navigation from './components/Nav';
+import MapContainer from './components/Map';
 import LargeLogo from './components/LargeLogo';
 
 
