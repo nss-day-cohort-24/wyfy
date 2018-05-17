@@ -20,6 +20,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react-styleguidist": "^7.0.9"
+    "react-styleguidist": "^7.0.14"
   }
 }
