@@ -19,4 +19,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+Fetchtest.js
+=======
 package-lock.json
+>>>>>>> c72dda87c039541fc3d50dc224d56e1f36081fcb
