@@ -9,9 +9,8 @@ class App extends Component {
   render() {
     return (
       <div>
-      <NashData />
-
         <Navigation/>
+        <NashData />
         <MapContainer />
 
       </div>
