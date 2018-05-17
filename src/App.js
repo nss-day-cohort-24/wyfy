@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import LargeLogo from './components/Logo';
+import LargeLogo from './components/LargeLogo';
 import './main.scss';
 
 class App extends Component {
