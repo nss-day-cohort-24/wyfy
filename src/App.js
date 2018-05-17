@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Navigation from './Nav';
-import MapContainer from './Map';
+import Navigation from './components/Nav';
+import MapContainer from './components/Map';
 import LargeLogo from './components/LargeLogo';
 
 
