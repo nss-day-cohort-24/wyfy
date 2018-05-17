@@ -9,7 +9,7 @@ class NashData extends Component {
         super(props);
        this.state = {
          data: null,
-         dataIsLoaded:false
+         DataIsLoaded:false
        };
     }
 
@@ -30,7 +30,7 @@ class NashData extends Component {
         console.log(this.state,"thisstate");
         if(this.state.DataIsLoaded === true){
         const wifiAddresses = this.state.data.map((item, index) =>
-        <li key={index}>{item.site_name}<br />{item.street_address}<br />{item.city}, {item.zip_code}</li>
+        <li key={index}><b>{item.site_name}</b>-{item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}</li>
     )
 
                return(
