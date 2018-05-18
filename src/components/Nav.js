@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LargeLogo from './LargeLogo';
 
 import {
   Collapse,
@@ -32,6 +33,8 @@ export default class Navigation extends React.Component {
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">WyFy</NavbarBrand>
+          
+          <LargeLogo />
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

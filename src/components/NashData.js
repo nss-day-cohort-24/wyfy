@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-
+var API_KEY = 'AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY';
 
 
 class NashData extends Component {
@@ -9,7 +9,7 @@ class NashData extends Component {
         super(props);
        this.state = {
          data: null,
-         dataIsLoaded:false
+         DataIsLoaded:false
        };
     }
 
@@ -26,11 +26,19 @@ class NashData extends Component {
         }
         )
     }
+    // Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
+    grabGoogleData(latitude,longitude,name){
+        let newName = name.replace(/\s/g, '');
+        console.log("newname",newName)
+        
+        console.log(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
+    }
+
     render() {
         console.log(this.state,"thisstate");
         if(this.state.DataIsLoaded === true){
         const wifiAddresses = this.state.data.map((item, index) =>
-        <li key={index}>{item.site_name}<br />{item.street_address}<br />{item.city}, {item.zip_code}</li>
+        <li key={index}><b>{item.site_name}</b> - {item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button></li>
     )
 
                return(
