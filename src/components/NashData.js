@@ -108,7 +108,7 @@ class NashData extends Component {
 
                return(
 
-            <div className="margin-top">
+            <div className="margin-top d-flex justify-content-left">
             <ul>
             {wifiAddresses}
             </ul>

@@ -31,21 +31,37 @@ p {
     color: #1E3679;
 }
 
+ul li {
+    list-style: none;
+}
+
 .map-flexbox {
     display: flex;
     justify-content: center;
     padding: 30px;
+    height: 460px;
+    background-color:white;
 }
 
 .main-map {
     max-width: 90%;
     max-height: 400px;
     margin: auto;
+    border: 2px solid #6DB43D;
+    
 }
 /*    P STYLING IS SUBJECT TO CHANGE WITH BACKGROUND   */
 
 .margin-top {
-    margin-top: 400px; 
+    width: 90%;
+    margin: auto;
+    overflow: auto;
+    height: 150px;
+    margin-bottom: 30px;
+}
+
+.margin-top ul {
+    padding: 0;
 }
 
 .map-size {
