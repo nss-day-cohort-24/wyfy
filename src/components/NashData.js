@@ -15,6 +15,7 @@ class NashData extends Component {
          googleRating: "N/A",
          googleOpen: "N/A",
          click: null,
+         imgLink: "https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357",
        };
     }
 
@@ -69,11 +70,23 @@ class NashData extends Component {
                         googleOpen: "N/A"
                     })
                 }
+                //IF statement that assign img link if it exists...
+                if (data.results[0].photos){
+                    component.setState({
+                        imgLink: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${data.results[0].photos[0].photo_reference}&key=${API_KEY}`
+                    })
+                //...ELSE statement that returns state to default if img doesn't exists
+                } else {
+                    component.setState({
+                        imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
+                    })
+                }
             //...ELSE statement that returns state to default if Google Search data doesn't exist
             } else {
                 component.setState({
                     googleRating: "N/A",
-                    googleOpen: "N/A"
+                    googleOpen: "N/A",
+                    imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
                 })
             }
             //Set the general data to googleData state
@@ -95,7 +108,9 @@ class NashData extends Component {
             if (this.state.click === item.site_name) {
                 return (
                     <li key={index}><b>{item.site_name}</b> - {item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
-                    <br/>RATING: {this.state.googleRating}<br/>{this.state.googleOpen}</li>
+                    <br/>RATING: {this.state.googleRating}<br/>{this.state.googleOpen}<br/>
+                    <img src={this.state.imgLink} alt="Image of Stuff"/>
+                    </li>
                 )
             }
             else {
