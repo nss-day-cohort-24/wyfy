@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/Nav';
 import MapContainer from './components/Map';
-import LargeLogo from './components/LargeLogo';
 import NashData from './components/NashData';
 
 class App extends Component {
   render() {
     return (
       <div>
-      <NashData />
-
         <Navigation/>
+        <NashData />
         <MapContainer />
-        <LargeLogo />
 
       </div>
     )
