@@ -1,0 +1,8 @@
+#search {
+    border: 1px solid #C3d634;
+}
+
+input#search:focus{
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(195, 214, 52,.4);
+}
