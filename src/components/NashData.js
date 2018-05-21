@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
+
 
 var API_KEY = 'AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY';
 
@@ -8,6 +10,7 @@ class NashData extends Component {
 
     constructor(props) {
         super(props);
+        this.toggle = this.toggle.bind(this);
        this.state = {
          data: null,
          DataIsLoaded: false,
@@ -15,9 +18,13 @@ class NashData extends Component {
          googleRating: "N/A",
          googleOpen: "N/A",
          click: null,
+         collapse: false
        };
     }
 
+    toggle() {
+        this.setState({ collapse: !this.state.collapse });
+      }
     componentDidMount(){
         var component = this
 
@@ -94,13 +101,34 @@ class NashData extends Component {
             //IF statement that checks on whether or not the one clicked is the one mapped
             if (this.state.click === item.site_name) {
                 return (
-                    <li key={index}><b>{item.site_name}</b> - {item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
+                <div>
+                    <li key={index}><b>{item.site_name}</b> - {item.site_type}<br /></li>
+                    <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
+                    <Collapse isOpen={this.state.collapse}>
+                        <Card>
+                            <CardBody>
+                    <li>{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
                     <br/>RATING: {this.state.googleRating}<br/>{this.state.googleOpen}</li>
+                       </CardBody>
+                       </Card>
+                  </Collapse>
+                </div>
                 )
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b> - {item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button></li>
+                    <div>
+                    <li key={index}><b>{item.site_name}</b> - {item.site_type}<br /></li>
+                         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
+                            <Collapse isOpen={this.state.collapse}>
+                                <Card>
+                                 <CardBody>
+
+                    <li>{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button></li>
+                    </CardBody>
+                    </Card>
+                    </Collapse>
+                    </div>
                 )
             }
         }
