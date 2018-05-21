@@ -3,18 +3,9 @@ import Logo4 from '../Logos/Logo4';
 import './topnav.css';
 
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
   Input,
-  DropdownItem } from 'reactstrap';
+ } from 'reactstrap';
 
 export default class Navigation extends React.Component {
   constructor(props) {
