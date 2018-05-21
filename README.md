@@ -1,1 +1,1 @@
-## WyFy
+![WyFy!](src/images/wyfy-logo4.png "Wyfy")
