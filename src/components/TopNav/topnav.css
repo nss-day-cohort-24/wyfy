@@ -18,7 +18,12 @@ input#search:focus{
 }
 
 .navBar{
+    /* background-image:linear-gradient(rgb(66, 66, 66), rgb(29, 29, 29)); */
     background-color: #F9F9F9;
     box-shadow: 0px .025rem .8rem .05rem rgba(32, 32, 32,.3);
     z-index: 90;
+}
+
+.searchInputGroup {
+    padding-right: 0 !important;
 }
