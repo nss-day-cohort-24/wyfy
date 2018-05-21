@@ -41,17 +41,18 @@ class NashData extends Component {
         .then(function(data) {
             //IF statement that checks on whether or on Google Search data exists...
             if (data.results.length > 0) {
-                //IF statements that assign rating to googleRating state if it exists
+                //IF statements that assign rating to googleRating state if it exists...
                 if (data.results[0].rating) {
                     component.setState({
                         googleRating: data.results[0].rating
                     }) 
+                //...ELSE statement that returns state to default if rating data doesn't exists
                 } else {
                     component.setState({
                         googleRating: "N/A"
                     })
                 }
-                //IF statements that assign "OPEN" or "CLOSE" to googleOpen state if it exists
+                //IF statements that assign "OPEN" or "CLOSE" to googleOpen state if it exists and based on true or false statement
                 if (data.results[0].opening_hours) {
                     if (data.results[0].opening_hours.open_now) {
                         component.setState({
@@ -62,6 +63,7 @@ class NashData extends Component {
                             googleOpen: "CLOSE"
                         })
                     }
+                //...ELSE statement that returns state to default if open now data doesn't exists
                 } else {
                     component.setState({
                         googleOpen: "N/A"
