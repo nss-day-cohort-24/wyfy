@@ -1,6 +1,6 @@
 ```js
-//Wyfy logo
+//Use This Logo For ______________
 <div class="d-flex row justify-content-around">
-<Logos class="logo"/>
+<Logo class="logo" />
 </div>
 ```
