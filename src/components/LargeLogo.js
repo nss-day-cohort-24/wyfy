@@ -1,12 +1,14 @@
 import React from 'react';
-import logo from '../images/connect-wifi.png';
+import logo from '../images/wyfy-logo.svg';
+import logo2 from '../images/wyfy-logo2.svg';
+import logo3 from '../images/wyfy-logo3.svg';
 
-function LargeLogo() {
+let LargeLogo = (props) => {
     return (
         <div>
-            <img src={logo} alt="this will be replaced with taybig's logo" width="5%"/>
+            <img src= {logo} />
         </div>
-    )
+    );
 }
 
 
