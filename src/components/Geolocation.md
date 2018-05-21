@@ -1,0 +1,4 @@
+Geolocation button:
+```js
+<Geolocation />
+```
