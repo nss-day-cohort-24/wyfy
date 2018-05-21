@@ -38,9 +38,17 @@ p {
 }
 
 .main-map {
-    max-width: 60%;
-    max-height: 500px;
+    max-width: 90%;
+    max-height: 400px;
     margin: auto;
 }
 /*    P STYLING IS SUBJECT TO CHANGE WITH BACKGROUND   */
 
+.margin-top {
+    margin-top: 400px; 
+}
+
+.map-size {
+    height: 400px;
+    overflow: hidden;
+}
