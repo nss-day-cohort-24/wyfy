@@ -31,13 +31,16 @@ p {
     color: #1E3679;
 }
 
+.map-flexbox {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.main-map {
+    max-width: 60%;
+    max-height: 500px;
+    margin: auto;
+}
 /*    P STYLING IS SUBJECT TO CHANGE WITH BACKGROUND   */
 
-.margin-top {
-    margin-top: 400px; 
-}
-
-.map-size {
-    height: 400px;
-    overflow: hidden;
-}
