@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../App.css';
 
 var API_KEY = 'AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY';
 
@@ -43,7 +44,7 @@ class NashData extends Component {
 
                return(
 
-            <div>
+            <div className="margin-top">
             <ul>
             {wifiAddresses}
             </ul>

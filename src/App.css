@@ -32,3 +32,12 @@ p {
 }
 
 /*    P STYLING IS SUBJECT TO CHANGE WITH BACKGROUND   */
+
+.margin-top {
+    margin-top: 400px; 
+}
+
+.map-size {
+    height: 400px;
+    overflow: hidden;
+}
