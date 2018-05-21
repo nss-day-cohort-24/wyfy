@@ -27,7 +27,7 @@ export default class Navigation extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className="d-flex justify-content-between" color="light">         
+        <Navbar className="d-flex justify-content-between navBar">         
           <Logo4 />        
           <InputGroup className="searchInputGroup col-6">
             <InputGroupAddon addonType="prepend">

@@ -1,6 +1,7 @@
 #search {
     border: 1px solid #C3d634;
     width: 5rem;
+    border-radius: 3px;
 }
 
 input#search:focus{
@@ -14,4 +15,8 @@ input#search:focus{
 .icon{
     width: 2rem;
     margin-right: .5rem;
+}
+
+.navBar{
+    background-color: #F9F9F9;
 }
