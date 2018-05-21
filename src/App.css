@@ -31,4 +31,15 @@ p {
     color: #1E3679;
 }
 
+.map-flexbox {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.main-map {
+    max-width: 60%;
+    max-height: 500px;
+    margin: auto;
+}
 /*    P STYLING IS SUBJECT TO CHANGE WITH BACKGROUND   */
