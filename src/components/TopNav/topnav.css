@@ -19,4 +19,6 @@ input#search:focus{
 
 .navBar{
     background-color: #F9F9F9;
+    box-shadow: 0px .025rem .8rem .05rem rgba(32, 32, 32,.3);
+    z-index: 90;
 }
