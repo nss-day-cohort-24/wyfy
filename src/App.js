@@ -10,8 +10,8 @@ class App extends Component {
     return (
       <div>
         <Navigation/>
+        <MapContainer/>
         <NashData />
-        <MapContainer />
 
       </div>
     )
