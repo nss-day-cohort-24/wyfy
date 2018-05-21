@@ -39,17 +39,20 @@ class NashData extends Component {
         fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
         .then((resp) => resp.json())
         .then(function(data) {
+            //IF statement that checks on whether or on Google Search data exists...
             if (data.results.length > 0) {
+                //IF statements that assign rating to googleRating state if it exists...
                 if (data.results[0].rating) {
                     component.setState({
                         googleRating: data.results[0].rating
                     }) 
+                //...ELSE statement that returns state to default if rating data doesn't exists
                 } else {
                     component.setState({
                         googleRating: "N/A"
                     })
                 }
-
+                //IF statements that assign "OPEN" or "CLOSE" to googleOpen state if it exists and based on true or false statement
                 if (data.results[0].opening_hours) {
                     if (data.results[0].opening_hours.open_now) {
                         component.setState({
@@ -60,17 +63,20 @@ class NashData extends Component {
                             googleOpen: "CLOSE"
                         })
                     }
+                //...ELSE statement that returns state to default if open now data doesn't exists
                 } else {
                     component.setState({
                         googleOpen: "N/A"
                     })
                 }
+            //...ELSE statement that returns state to default if Google Search data doesn't exist
             } else {
                 component.setState({
                     googleRating: "N/A",
                     googleOpen: "N/A"
                 })
             }
+            //Set the general data to googleData state
             component.setState({
                 googleData: data.results[0],
                 click: name
@@ -83,9 +89,9 @@ class NashData extends Component {
 
     render() {
         console.log(this.state,"thisstate");
-        let openState = "N/A";
         if(this.state.DataIsLoaded === true){
         const wifiAddresses = this.state.data.map((item, index) => {
+            //IF statement that checks on whether or not the one clicked is the one mapped
             if (this.state.click === item.site_name) {
                 return (
                     <li key={index}><b>{item.site_name}</b> - {item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>

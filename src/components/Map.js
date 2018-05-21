@@ -9,11 +9,11 @@ var API_KEY = 'AIzaSyBFArv5hJebxtu-iUHl_XQYlq4gmuf2Xeo';
 export class MapContainer extends Component {
   render() {
     return (
-      <div className="map-size">
-        <Map google={this.props.google} zoom={14}>
-          <Marker name={'Current location'} />
-        </Map>
-      </div>
+    <div className="map-flexbox">
+      <Map google={this.props.google} zoom={14} className="main-map">
+        <Marker name={'Current location'} />
+      </Map>
+    </div>
     );
   }
 }
