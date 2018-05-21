@@ -81,6 +81,15 @@ class NashData extends Component {
                 googleData: data.results[0],
                 click: name
             })
+            fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
+            .then((resp) => resp.json())
+            .then(function(data) {
+                console.log("Advanced Data",data);
+                component.setState({
+                    googlePhone: data.result.formatted_phone_number,
+                    googleLoaded: true
+                })
+            })
         }
         )
     }
@@ -92,6 +101,15 @@ class NashData extends Component {
         if(this.state.DataIsLoaded === true){
         const wifiAddresses = this.state.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
+            
+            
+            if(this.state.click === item.site_name && this.state.googleLoaded == true){
+                return (
+                    <li key={index}><b>{item.site_name}</b> - {item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
+                    <br/>RATING: {this.state.googleRating}<br/>{this.state.googleOpen} {this.state.googlePhone}</li>
+                )
+
+            }
             if (this.state.click === item.site_name) {
                 return (
                     <li key={index}><b>{item.site_name}</b> - {item.site_type}<br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
