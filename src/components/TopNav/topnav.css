@@ -1,0 +1,22 @@
+#search {
+    border: 1px solid #C3d634;
+    width: 5rem;
+    border-radius: 3px;
+}
+
+input#search:focus{
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(195, 214, 52,.4);
+}
+.searchInputGroup{
+    height: 2rem;
+}
+
+.icon{
+    width: 2rem;
+    margin-right: .5rem;
+}
+
+.navBar{
+    background-color: #F9F9F9;
+}

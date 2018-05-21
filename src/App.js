@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Navigation from './components/Nav';
+import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
 import NashData from './components/NashData';
 
@@ -10,8 +10,8 @@ class App extends Component {
     return (
       <div>
         <Navigation/>
+        <MapContainer/>
         <NashData />
-        <MapContainer />
 
       </div>
     )
