@@ -1,10 +1,13 @@
 import React from 'react';
 import Logo4 from '../Logos/Logo4';
 import './topnav.css';
+import searchIcon from '../../images/wyfy-search.svg';
 
 import {
   Navbar,
   Input,
+  InputGroup,
+  InputGroupAddon
  } from 'reactstrap';
 
 export default class Navigation extends React.Component {
@@ -24,9 +27,14 @@ export default class Navigation extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className="d-flex justify-content-between" color="light" light expand="md">         
-          <Logo4 />
-          <Input className="col-5 searchBar" type="search" name="search" id="search" placeholder="Enter Zip..." />
+        <Navbar className="d-flex justify-content-between" color="light">         
+          <Logo4 />        
+          <InputGroup className="searchInputGroup col-6">
+            <InputGroupAddon addonType="prepend">
+              <img src={searchIcon} alt="logo" className="icon" />
+            </InputGroupAddon>
+            <Input className="searchBar" type="search" name="search" id="search" placeholder="Enter Zip..." />
+          </InputGroup>
         </Navbar>
       </div>
     );
