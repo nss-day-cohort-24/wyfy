@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Logo4 from '../Logos/Logo4';
 import './topnav.css';
 
