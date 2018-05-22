@@ -18,12 +18,17 @@ class NashData extends Component {
          googleRating: "N/A",
          googleOpen: "N/A",
          click: null,
-         collapse: false
+         collapse: false,
        };
     }
 
-    toggle() {
-        this.setState({ collapse: !this.state.collapse });
+    toggle(index, item, event) {
+        console.log("testing", this.state.data[index]);
+        if(this.state.collapse==false){
+            this.setState({ collapse: !this.state.collapse });
+        }else{
+            this.setState({collapse: !this.state.collapse});
+        }
       }
     componentDidMount(){
         var component = this
@@ -103,8 +108,10 @@ class NashData extends Component {
                 return (
                 <div>
                     <li key={index}><b>{item.site_name}</b> - {item.site_type}<br /></li>
-                    <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
-                    <Collapse isOpen={this.state.collapse}>
+
+                    <Button color="success" onClick={this.toggle.bind(this, index)} key={`btn${index}`} style={{ marginBottom: '1rem' }}>More...</Button>
+                   
+                    <Collapse isOpen={this.state.collapse} key={`info${index}`}>
                         <Card>
                             <CardBody>
                     <li>{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
@@ -119,8 +126,8 @@ class NashData extends Component {
                 return (
                     <div>
                     <li key={index}><b>{item.site_name}</b> - {item.site_type}<br /></li>
-                         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
-                            <Collapse isOpen={this.state.collapse}>
+                         <Button color="success" onClick={this.toggle.bind(this, index)} key={`btn${index}`} style={{ marginBottom: '1rem' }}>More...</Button>
+                            <Collapse isOpen={this.state.collapse} key={`info${index}`}>
                                 <Card>
                                  <CardBody>
 
