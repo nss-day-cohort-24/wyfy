@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
+
 
 var API_KEY = 'AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY';
 
@@ -8,18 +10,28 @@ class NashData extends Component {
 
     constructor(props) {
         super(props);
+        this.toggle = this.toggle.bind(this);
        this.state = {
          data: null,
          DataIsLoaded: false,
          googleData: null,
          googleOpen: "N/A",
          click: null,
+         collapse: false,
          imgLink: "https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357",
          googlePhone:"N/A",
          googleLoaded:false
        };
     }
 
+    toggle(index, item, event) {
+        console.log("testing", this.state.data[index]);
+        if(this.state.collapse===false){
+            this.setState({ collapse: !this.state.collapse });
+        }else{
+            this.setState({collapse: !this.state.collapse});
+        }
+      }
     componentDidMount(){
         var component = this
 
@@ -114,7 +126,7 @@ class NashData extends Component {
                 return (
                     <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
-                    <img src={this.state.imgLink} alt="Image of Stuff"/>
+                    <img src={this.state.imgLink} alt="location of Stuff"/>
                     </li>
                     
                 )
@@ -122,15 +134,38 @@ class NashData extends Component {
             }
             if (this.state.click === item.site_name) {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
-                    <br/>{this.state.googleOpen}<br/>
-                    <img src={this.state.imgLink} alt="Image of Stuff"/>
-                    </li>
+                <div>
+                    <li key={index}><b>{item.site_name}</b> - {item.site_type}<br /></li>
+
+                    <Button color="success" onClick={this.toggle.bind(this.state.data[index])} key={`btn${index}`} style={{ marginBottom: '1rem' }}>More...</Button>
+                   
+                    <Collapse isOpen={this.state.collapse} key={`info${index}`}>
+                        <Card>
+                            <CardBody>
+                    <li>{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
+                    <br/>RATING: {this.state.googleRating}<br/>{this.state.googleOpen}</li>
+                  <br/>{this.state.googleOpen}<br/>
+                  <img src={this.state.imgLink} alt="location of Stuff"/>
+                       </CardBody>
+                       </Card>
+                  </Collapse>
+                </div>
                 )
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button></li>
+                    <div>
+                    <li key={index}><b>{item.site_name}</b> - {item.site_type}<br /></li>
+                         <Button color="success" onClick={this.toggle.bind(this, index)} key={`btn${index}`} style={{ marginBottom: '1rem' }}>More...</Button>
+                            <Collapse isOpen={this.state.collapse} key={`info${index}`}>
+                                <Card>
+                                 <CardBody>
+
+                    <li>{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button></li>
+                    </CardBody>
+                    </Card>
+                    </Collapse>
+                    </div>
                 )
             }
         }
