@@ -26,7 +26,7 @@ class NashData extends Component {
 
     toggle(index, item, event) {
         console.log("testing", this.state.data[index]);
-        if(this.state.collapse==false){
+        if(this.state.collapse===false){
             this.setState({ collapse: !this.state.collapse });
         }else{
             this.setState({collapse: !this.state.collapse});
@@ -126,7 +126,7 @@ class NashData extends Component {
                 return (
                     <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
-                    <img src={this.state.imgLink} alt="Image of Stuff"/>
+                    <img src={this.state.imgLink} alt="location of Stuff"/>
                     </li>
                     
                 )
@@ -137,7 +137,7 @@ class NashData extends Component {
                 <div>
                     <li key={index}><b>{item.site_name}</b> - {item.site_type}<br /></li>
 
-                    <Button color="success" onClick={this.toggle.bind(this, index)} key={`btn${index}`} style={{ marginBottom: '1rem' }}>More...</Button>
+                    <Button color="success" onClick={this.toggle.bind(this.state.data[index])} key={`btn${index}`} style={{ marginBottom: '1rem' }}>More...</Button>
                    
                     <Collapse isOpen={this.state.collapse} key={`info${index}`}>
                         <Card>
@@ -145,7 +145,7 @@ class NashData extends Component {
                     <li>{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
                     <br/>RATING: {this.state.googleRating}<br/>{this.state.googleOpen}</li>
                   <br/>{this.state.googleOpen}<br/>
-                  <img src={this.state.imgLink} alt="Image of Stuff"/>
+                  <img src={this.state.imgLink} alt="location of Stuff"/>
                        </CardBody>
                        </Card>
                   </Collapse>
