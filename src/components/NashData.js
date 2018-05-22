@@ -15,10 +15,12 @@ class NashData extends Component {
          data: null,
          DataIsLoaded: false,
          googleData: null,
-         googleRating: "N/A",
          googleOpen: "N/A",
          click: null,
          collapse: false,
+         imgLink: "https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357",
+         googlePhone:"N/A",
+         googleLoaded:false
        };
     }
 
@@ -48,22 +50,12 @@ class NashData extends Component {
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         let newName = name.replace(/\s/g, '');
         var component = this
+        console.log(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
         fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
         .then((resp) => resp.json())
         .then(function(data) {
             //IF statement that checks on whether or on Google Search data exists...
             if (data.results.length > 0) {
-                //IF statements that assign rating to googleRating state if it exists...
-                if (data.results[0].rating) {
-                    component.setState({
-                        googleRating: data.results[0].rating
-                    }) 
-                //...ELSE statement that returns state to default if rating data doesn't exists
-                } else {
-                    component.setState({
-                        googleRating: "N/A"
-                    })
-                }
                 //IF statements that assign "OPEN" or "CLOSE" to googleOpen state if it exists and based on true or false statement
                 if (data.results[0].opening_hours) {
                     if (data.results[0].opening_hours.open_now) {
@@ -72,7 +64,7 @@ class NashData extends Component {
                         })
                     } else if (!data.results[0].opening_hours.open_now) {
                         component.setState({
-                            googleOpen: "CLOSE"
+                            googleOpen: "CLOSED"
                         })
                     }
                 //...ELSE statement that returns state to default if open now data doesn't exists
@@ -81,17 +73,41 @@ class NashData extends Component {
                         googleOpen: "N/A"
                     })
                 }
+                //IF statement that assign img link if it exists...
+                if (data.results[0].photos){
+                    component.setState({
+                        imgLink: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${data.results[0].photos[0].photo_reference}&key=${API_KEY}`
+                    })
+                //...ELSE statement that returns state to default if img doesn't exists
+                } else {
+                    component.setState({
+                        imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
+                    })
+                }
+                console.log(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
+                fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
+                .then((resp) => resp.json())
+                .then(function(data) {
+
+                    console.log("Advanced Data",data);
+                    component.setState({
+                        googlePhone: data.result.formatted_phone_number,
+                        googleLoaded: true})
+                })
             //...ELSE statement that returns state to default if Google Search data doesn't exist
-            } else {
+            } 
+            else {
                 component.setState({
-                    googleRating: "N/A",
-                    googleOpen: "N/A"
+                    googleOpen: "N/A",
+                    googlePhone: "N/A",
+                    imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
                 })
             }
             //Set the general data to googleData state
             component.setState({
                 googleData: data.results[0],
                 click: name
+
             })
         }
         )
@@ -104,6 +120,18 @@ class NashData extends Component {
         if(this.state.DataIsLoaded === true){
         const wifiAddresses = this.state.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
+            
+            
+            if(this.state.click === item.site_name && this.state.googleLoaded === true){
+                return (
+                    <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
+                    <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
+                    <img src={this.state.imgLink} alt="Image of Stuff"/>
+                    </li>
+                    
+                )
+
+            }
             if (this.state.click === item.site_name) {
                 return (
                 <div>
@@ -116,6 +144,8 @@ class NashData extends Component {
                             <CardBody>
                     <li>{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
                     <br/>RATING: {this.state.googleRating}<br/>{this.state.googleOpen}</li>
+                  <br/>{this.state.googleOpen}<br/>
+                  <img src={this.state.imgLink} alt="Image of Stuff"/>
                        </CardBody>
                        </Card>
                   </Collapse>
@@ -143,7 +173,7 @@ class NashData extends Component {
 
                return(
 
-            <div className="margin-top">
+            <div className="margin-top d-flex justify-content-left">
             <ul>
             {wifiAddresses}
             </ul>
