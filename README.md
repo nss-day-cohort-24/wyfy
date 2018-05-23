@@ -90,7 +90,7 @@ render()  {
 }
 ```
 ##### Logo
-[WyFy!](src/images/wyfy-logo4.png "Wyfy" =150x)
+[WyFy!](src/images/wyfy-logo4.png "Wyfy" =150px)
 ##### Search
 ---
 ### Map
