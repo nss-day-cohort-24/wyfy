@@ -94,8 +94,10 @@ render()  {
 <p align="center">
 <img src="src/images/wyfy-logo4.png" width="250"/>
 </p>
+
 ##### Search
 ---
+
 ### Map
 
 ```javascript
