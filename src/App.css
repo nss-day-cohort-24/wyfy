@@ -35,6 +35,7 @@ p {
 
 ul li {
     list-style: none;
+    word-wrap: break-word;
 }
 
 .map-flexbox {
@@ -78,6 +79,17 @@ ul li {
     color: #222;
 }
 
+.map-size {
+    height: 400px;
+    overflow: hidden;
+}
+
+.btn-secondary{
+    background-color: white !important;
+    color: #222 !important;
+    width: 100% !important;
+}
+
 .fav-icon {
     background-color: white;
     margin-top: 1rem;
@@ -100,6 +112,7 @@ ul li {
     width: 12%;
 }
 
+
 .btn-success{
     background-image: linear-gradient(180deg,rgb(121, 221, 54),#6DB43D);
     border-bottom: none !important;
@@ -108,4 +121,8 @@ ul li {
     padding: .2rem 2rem !important;
     margin-top: .5rem;
     letter-spacing: 1px;
+
+.fav-h3 {
+    font-size: 25px;
+    font-family: 'Nova Mono', sans-serif;
 }
