@@ -11,8 +11,8 @@ class NashData extends Component {
     constructor(props) {
         super(props);
        this.state = {
-         data: null,
-         DataIsLoaded: false,
+         // data: this.props.data,
+         // DataIsLoaded: this.props.loaded,
          googleData: null,
          googleOpen: "N/A",
          click: null,
@@ -22,19 +22,19 @@ class NashData extends Component {
        };
     }
 
-    componentDidMount(){
-        var component = this
-
-        fetch("https://data.nashville.gov/resource/terb-nbm6.json")
-        .then((resp) => resp.json())
-        .then(function(data) {
-            component.setState({
-                data: data,
-                DataIsLoaded: true
-            })
-        }
-        )
-    }
+    // componentDidMount(){
+    //     var component = this
+    //
+    //     fetch("https://data.nashville.gov/resource/terb-nbm6.json")
+    //     .then((resp) => resp.json())
+    //     .then(function(data) {
+    //         component.setState({
+    //             data: data,
+    //             DataIsLoaded: true
+    //         })
+    //     }
+    //     )
+    // }
     // Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
     grabGoogleData(latitude,longitude,name,street_address,city,zip_code){
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -85,7 +85,7 @@ class NashData extends Component {
                         googleLoaded: true})
                 })
             //...ELSE statement that returns state to default if Google Search data doesn't exist
-            } 
+            }
             else {
                 component.setState({
                     googleOpen: "N/A",
@@ -107,11 +107,11 @@ class NashData extends Component {
 
     render() {
         console.log(this.state,"thisstate");
-        if(this.state.DataIsLoaded === true){
-        const wifiAddresses = this.state.data.map((item, index) => {
+        if(this.props.loaded === true){
+        const wifiAddresses = this.props.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
-            
-            
+
+
             if(this.state.click === item.site_name && this.state.googleLoaded === true){
                 return (
                     <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
@@ -119,7 +119,7 @@ class NashData extends Component {
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
                     <img src={this.state.imgLink} alt="Location"/>
                     </li>
-                    
+
                 )
 
             }
