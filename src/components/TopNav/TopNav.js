@@ -5,9 +5,7 @@ import searchIcon from '../../images/wyfy-search.svg';
 
 import {
   Navbar,
-  Input,
-  InputGroup,
-  InputGroupAddon
+  Input
  } from 'reactstrap';
 
 export default class Navigation extends React.Component {
@@ -33,13 +31,11 @@ export default class Navigation extends React.Component {
     return (
       <div>
         <Navbar className="d-flex justify-content-between navBar">         
-          <Logo4 />        
-          <InputGroup className="searchInputGroup col-6">
-            <InputGroupAddon addonType="prepend">
-              <img src={searchIcon} alt="logo" className="icon" />
-            </InputGroupAddon>
-            <Input className="searchBar" type="search" name="search" id="search" placeholder="Enter Name..." onKeyUp={this.search.bind(this)}/>
-          </InputGroup>
+          <Logo4 />
+          <div className="searchDiv d-flex align-items-center">
+            <img src={searchIcon} className="icon"/>
+            <Input className="searchBar" type="search" name="search" id="search" placeholder="Search Zip or Type..." onKeyUp={this.search.bind(this)}/>
+          </div>           
         </Navbar>
       </div>
     );
