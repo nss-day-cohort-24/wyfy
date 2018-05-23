@@ -20,12 +20,14 @@ class MoveNashData extends React.Component {
     }
     render() {
       return (
+          <div>
         <ButtonChild        
-          className={ this.state.condition ? "button toggled" : "button" }
           toggleClassName={ this.handleClick }
+          className={ this.state.condition ? "button toggled" : "button" }
         >
           <NashData />
         </ButtonChild>
+        </div>
       )
     }
   }
@@ -33,11 +35,13 @@ class MoveNashData extends React.Component {
   class ButtonChild extends React.Component {
     render() {
       return (
+          <div>
         <div
           className={ this.props.className }
           onClick={ this.props.toggleClassName }
         >
           { this.props.children }
+        </div>
         </div>
       )    
     }
