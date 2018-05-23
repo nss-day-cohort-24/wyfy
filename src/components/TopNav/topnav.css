@@ -17,6 +17,10 @@ input#search:focus{
     margin-right: .5rem;
 }
 
+.icon2{
+    width: 3.5rem;
+}
+
 .navBar{
     /* background-image:linear-gradient(rgb(66, 66, 66), rgb(29, 29, 29)); */
     background-color: #F9F9F9;

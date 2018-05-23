@@ -79,7 +79,8 @@ ul li {
 .footer {
     position: fixed;
     width: 100%;
-    height: 50px;
+    height: 58px;
+    /* padding: .5rem 1rem; */
     background-color: #CDD4D1;
     color: #222;
 }
