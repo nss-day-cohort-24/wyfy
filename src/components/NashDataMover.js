@@ -9,39 +9,59 @@ class MoveNashData extends React.Component {
     constructor(props) {    
       super(props)
       this.state = {
-        condition: false
+        condition: false,
+        buttonCondition: false 
       }
       this.handleClick = this.handleClick.bind(this)
+      this.handleButtonClick = this.handleButtonClick.bind(this)
+      this.click = this.click.bind(this)
     }
     handleClick() {
+        console.log("test handle")
       this.setState({
         condition: !this.state.condition
       })
     }
+    handleButtonClick(){
+        console.log("test button handle")
+
+        this.setState({
+            buttonCondition: !this.state.buttonCondition
+        })
+    }
+
+    click(){
+        this.handleButtonClick();
+        this.handleClick();
+        console.log("click");
+    }
     render() {
       return (
           <div>
-        <ButtonChild        
-          toggleClassName={ this.handleClick }
-          className={ this.state.condition ? "button toggled" : "button" }
+              <div className={ this.state.buttonCondition ? "button toggled" : "button" }>
+        <ButtonChild 
+        toggleClassName={ this.click }
         >
-          <NashData />
         </ButtonChild>
+        
+        <NashData
+        />
+        </div>
         </div>
       )
     }
-  }
+}
   
   class ButtonChild extends React.Component {
-    render() {
-      return (
-          <div>
-        <div
+      render() {
+          return (
+              <div>
+        <button
           className={ this.props.className }
           onClick={ this.props.toggleClassName }
-        >
+        >Heloo
           { this.props.children }
-        </div>
+        </button>
         </div>
       )    
     }
