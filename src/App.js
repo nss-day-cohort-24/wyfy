@@ -4,6 +4,7 @@ import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
 import MoveNashData from './components/NashDataMover';
 import BottomNav from './components/BottomNav';
+import Reminder from './components/Reminder';
 // import NashData from './components/NashData';
 
 
@@ -44,6 +45,7 @@ class App extends Component {
     return (
       <div>
         <Navigation search={this.searchName}/>
+      <Reminder />
         <MapContainer data={this.state.data} />
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
         <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} />
