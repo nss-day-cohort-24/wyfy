@@ -23,6 +23,7 @@ class NashData extends Component {
          searchNameState: false,
          geoLocated:this.props.geoLocated
        };
+       this.deg2rad = this.deg2rad.bind(this);
     }
 
     // componentDidMount(){
@@ -47,12 +48,30 @@ class NashData extends Component {
         }
     }
 
+
+    getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+        var dLon = this.deg2rad(lon2-lon1); 
+        var a = 
+          Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2)
+          ; 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c; // Distance in km
+        return d;
+      }
+
+      deg2rad(deg) {
+        return deg * (Math.PI/180)
+      }
+
     // Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
     grabGoogleData(latitude,longitude,name,street_address,city,zip_code){
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         let newName = name.replace(/\s/g, '');
         var component = this
-        console.log(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
         fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
         .then((resp) => resp.json())
         .then(function(data) {
@@ -86,12 +105,10 @@ class NashData extends Component {
                         imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
                     })
                 }
-                console.log(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
                 fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
                 .then((resp) => resp.json())
                 .then(function(data) {
 
-                    console.log("Advanced Data",data);
                     component.setState({
                         googlePhone: data.result.formatted_phone_number,
                         googleLoaded: true})
@@ -118,17 +135,27 @@ class NashData extends Component {
 
 
     render() {
-        let milesTo = "Click 'Get Location' button to show distance from current Location"
-        console.log(this.state,"thisstate");
-        console.log("propssbetch",this.props);
+        console.log(this.state,this.props);
+        let milesTo = ""
         if(this.props.loaded === true && this.state.searchNameState === false){
         const wifiAddresses = this.props.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
 
 
             if(this.state.click === item.site_name && this.state.googleLoaded === true){
+                if (this.props.geolocated === true){
+                    milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+                    milesTo = milesTo * .6;
+                    milesTo = Math.round(milesTo * 100) / 100;
+                    milesTo = `${milesTo} miles away`;
+                    console.log(milesTo," miles to location")                
+
+                }
+                else {
+                    console.log("no geolocation");
+                }
                 return (
-                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[0],item.mapped_location.coordinates[1],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
                     {milesTo}
@@ -143,6 +170,7 @@ class NashData extends Component {
                     <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br/>
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                    {milesTo}
                     <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
@@ -172,10 +200,22 @@ class NashData extends Component {
             let lowerSearch = this.props.search.toLowerCase();
             if (lowerData.includes(lowerSearch)) {
                 if(this.state.click === item.site_name && this.state.googleLoaded === true){
+                    if (this.props.geolocated === true){
+                        milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+                        milesTo = milesTo * .6;
+                        milesTo = Math.round(milesTo * 100) / 100;
+                        milesTo = `${milesTo} miles away`;
+                        console.log(milesTo," miles to location")                
+    
+                    }
+                    else {
+                        console.log("no geolocation");
+                    }
                     return (
                         <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                         <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
                         {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        {milesTo}<br />
                         <img src={this.state.imgLink} alt="Location"/>
                         </li>
     
@@ -187,6 +227,7 @@ class NashData extends Component {
                         <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                         <br/>{this.state.googleOpen}<br/>
                         {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        {milesTo}
                         <img src={this.state.imgLink} alt="Location"/>
                         </li>
                     )

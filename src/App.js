@@ -39,7 +39,6 @@ class App extends Component {
   }
 
   getLocation(coords){
-    console.log("coords are here",coords)
     this.setState({
       geoLocated:true,
       latitude: coords.latitude,
@@ -54,7 +53,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("this is the state now",this.state);
     return (
       <div>
         <Navigation search={this.searchName}/>
