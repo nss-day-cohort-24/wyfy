@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import Top from '../images/wyfy-rate.svg';
-import Search from '../images/wyfy-search.svg';
+import './TopNav/topnav.css';
+import Top from '../images/wyfy-top.svg';
+import Fav from '../images/wyfy-favs.svg';
+import Filter from '../images/wyfy-filter.svg';
 
 class BottomNav extends Component {
     render() {
         return(
-            <div className="footer">
-                <center><img src={Top} alt="top rated icon" className="bottom-icons"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <img src={Search} alt="search icon" className="bottom-icons"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <img src={Top} alt="top rated icon" className="bottom-icons"/></center>
+            <div className="footer navBar">
+                <center><img src={Top} alt="top rated icon" className="icon2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img src={Fav} alt="search icon" className="icon2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img src={Filter} alt="top rated icon" className="icon2"/></center>
             </div>
         )
     }
