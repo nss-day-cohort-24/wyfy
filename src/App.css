@@ -59,7 +59,7 @@ ul li {
     width: 90%;
     margin: auto;
     overflow: auto;
-    height: 12rem;
+    height: 15rem;
     margin-top: 1.1rem;
 }
 
@@ -75,6 +75,7 @@ ul li {
 
 .listDiv li b {
     font-size: 1.4rem;
+    color: #222;
 }
 
 .fav-icon {
@@ -86,7 +87,8 @@ ul li {
 }
 
 .footer {
-    position: fixed;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: 58px;
     /* padding: .5rem 1rem; */
@@ -99,9 +101,11 @@ ul li {
 }
 
 .btn-success{
-    background-image: linear-gradient(180deg,#C2D634,#6DB43D);
-    border: none !important;
+    background-image: linear-gradient(180deg,rgb(121, 221, 54),#6DB43D);
+    border-bottom: none !important;
+    border-color: transparent !important;
     border-radius: 3px !important;
     padding: .2rem 2rem !important;
     margin-top: .5rem;
+    letter-spacing: 1px;
 }
