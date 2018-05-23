@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Alert, Badge } from 'reactstrap';
+import './Reminder.css';
 
 class Reminder extends Component {
 
