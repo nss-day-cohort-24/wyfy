@@ -166,9 +166,31 @@ class NashData extends Component {
             let lowerData = item.site_name.toLowerCase();
             let lowerSearch = this.props.search.toLowerCase();
             if (lowerData.includes(lowerSearch)) {
-                return(
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
-                )
+                if(this.state.click === item.site_name && this.state.googleLoaded === true){
+                    return (
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                        <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
+                        {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        <img src={this.state.imgLink} alt="Location"/>
+                        </li>
+    
+                    )
+    
+                }
+                if (this.state.click === item.site_name) {
+                    return (
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                        <br/>{this.state.googleOpen}<br/>
+                        {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        <img src={this.state.imgLink} alt="Location"/>
+                        </li>
+                    )
+                }
+                else {
+                    return (
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
+                    )
+                }
             }
         })
         return (
