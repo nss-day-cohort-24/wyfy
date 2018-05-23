@@ -3,11 +3,8 @@ import './App.css';
 import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
 import NashData from './components/NashData';
-<<<<<<< HEAD
 import Geolocation from './components/Geolocation';
-=======
 import BottomNav from './components/BottomNav';
->>>>>>> master
 
 
 
