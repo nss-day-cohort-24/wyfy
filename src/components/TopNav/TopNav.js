@@ -33,8 +33,8 @@ export default class Navigation extends React.Component {
         <Navbar className="d-flex justify-content-between navBar">         
           <Logo4 />
           <div className="searchDiv d-flex align-items-center">
-            <img src={searchIcon} className="icon"/>
-            <Input className="searchBar" type="search" name="search" id="search" placeholder="Search Zip or Type..." onKeyUp={this.search.bind(this)}/>
+            <img src={searchIcon} className="icon" at="search icon"/>
+            <Input className="searchBar" type="search" name="search" id="search" placeholder="Search Type..." onKeyUp={this.search.bind(this)}/>
           </div>           
         </Navbar>
       </div>
