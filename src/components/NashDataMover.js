@@ -2,7 +2,9 @@ import React from 'react';
 // import { Button } from 'reactstrap';
 import NashData from './NashData';
 import '.././App.css';
-import './Mover.css'
+import './Mover.css';
+import upArrow from '../images/upArrow.png';
+// import './bootsrap';
 
 
 class MoveNashData extends React.Component {
@@ -56,12 +58,15 @@ class MoveNashData extends React.Component {
       render() {
           return (
               <div>
-        <button
+                <div className="d-flex justify-content-center">
+        <button id="moverBtn"
           className={ this.props.className }
           onClick={ this.props.toggleClassName }
-        >Mover
+        >        <img src={upArrow} alt="up arrow" />
+
           { this.props.children }
         </button>
+        </div>
         </div>
       )    
     }
