@@ -18,7 +18,8 @@ class NashData extends Component {
          click: null,
          imgLink: "https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357",
          googlePhone:"N/A",
-         googleLoaded:false
+         googleLoaded:false,
+         searchNameState: false
        };
     }
 
@@ -35,6 +36,15 @@ class NashData extends Component {
     //     }
     //     )
     // }
+
+    componentWillReceiveProps(){
+        if(this.props.search !== "N/A"){
+            this.setState({
+                searchNameState: true
+            })
+        }
+    }
+
     // Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
     grabGoogleData(latitude,longitude,name,street_address,city,zip_code){
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -107,7 +117,7 @@ class NashData extends Component {
 
     render() {
         console.log(this.state,"thisstate");
-        if(this.props.loaded === true){
+        if(this.props.loaded === true && this.state.searchNameState === false){
         const wifiAddresses = this.props.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
 
@@ -151,6 +161,24 @@ class NashData extends Component {
 
         )
 
+    } else if (this.state.searchNameState) {
+        const wifiAddresses = this.props.data.map((item, index) => {
+            let lowerData = item.site_name.toLowerCase();
+            let lowerSearch = this.props.search.toLowerCase();
+            if (lowerData.includes(lowerSearch)) {
+                return(
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
+                )
+            }
+        })
+        return (
+            <div className="margin-top">
+            <ul>
+            {wifiAddresses}
+            </ul>
+            </div>
+        )
+    
     }else{
 
         return(

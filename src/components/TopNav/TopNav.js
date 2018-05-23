@@ -24,6 +24,11 @@ export default class Navigation extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  search(event){
+    this.props.search(document.getElementById("search").value);
+  }
+
   render() {
     return (
       <div>
@@ -33,7 +38,7 @@ export default class Navigation extends React.Component {
             <InputGroupAddon addonType="prepend">
               <img src={searchIcon} alt="logo" className="icon" />
             </InputGroupAddon>
-            <Input className="searchBar" type="search" name="search" id="search" placeholder="Enter Zip..." />
+            <Input className="searchBar" type="search" name="search" id="search" placeholder="Enter Name..." onKeyDown={this.search.bind(this)}/>
           </InputGroup>
         </Navbar>
       </div>
