@@ -1,6 +1,7 @@
 ![WyFy!](src/images/wyfy-logo4.png "Wyfy")
 ##  Your app to finding local free wifi hotspots based on your location or zipcode
 
+
   
 
 ###  How to - Install WyFy
@@ -90,7 +91,9 @@ render()  {
 }
 ```
 ##### Logo
-<img src="src/images/wyfy-logo4.png" alt="drawing" style="width: 200px;"/>
+<p align="center">
+<img src="src/images/wyfy-logo4.png" width="250"/>
+</p>
 ##### Search
 ---
 ### Map
