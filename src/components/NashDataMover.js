@@ -59,7 +59,7 @@ class MoveNashData extends React.Component {
         <button
           className={ this.props.className }
           onClick={ this.props.toggleClassName }
-        >Heloo
+        >Mover
           { this.props.children }
         </button>
         </div>
