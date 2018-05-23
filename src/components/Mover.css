@@ -32,3 +32,15 @@ body {
   button {
     margin-top: 80px;
   }
+  #moverBtn{
+    background-color: transparent;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+  }
+  #moverBtn:focus{
+    outline: none;
+  }
