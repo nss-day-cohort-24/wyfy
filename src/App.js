@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
-import NashData from './components/NashData';
+import MoveNashData from './components/NashDataMover';
 import BottomNav from './components/BottomNav';
+// import NashData from './components/NashData';
 
 
 
@@ -44,8 +45,8 @@ class App extends Component {
       <div>
         <Navigation search={this.searchName}/>
         <MapContainer data={this.state.data} />
-        <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/>
-
+        {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
+        <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} />
         <BottomNav />
       </div>
     )
