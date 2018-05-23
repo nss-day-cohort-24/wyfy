@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './TopNav/topnav.css';
-import Top from '../images/wyfy-rate.svg';
-import Fav from '../images/fav-icon.svg';
+import Top from '../images/wyfy-top.svg';
+import Fav from '../images/wyfy-favs.svg';
 import Filter from '../images/wyfy-filter.svg';
 
 class BottomNav extends Component {
