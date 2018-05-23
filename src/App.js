@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
-import NashData from './components/NashData';
+import MoveNashData from './components/NashDataMover';
 
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
       <div>
         <Navigation/>
         <MapContainer/>
-        <NashData />
+        <MoveNashData />
 
       </div>
     )

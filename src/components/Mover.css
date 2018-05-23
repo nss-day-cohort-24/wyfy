@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+  }
+  h2 {
+    margin: 50px 0 10px;
+  }
+  .link {
+    display: inline-block;
+    margin-bottom: 50px;
+  }
+  .button {
+    display: inline-block;
+      font-size: 18px;
+      color: #2f70e1;
+      padding: 10px 30px; 
+    margin-right: 10px;
+    margin-bottom: 30px;
+      box-shadow:	0px 1px 3px 0px rgba(0, 0, 0, .3);
+    cursor: pointer;
+  }
+  .button-small {
+    padding: 5px 10px;  
+    font-size: 12px;
+  }
+  .toggled {
+      background-color: #ffffff;
+      position: relative;
+      top: -300px;
+      height: 500px;
+      
+  }
+  button {
+    margin-top: 80px;
+  }
