@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { Button } from 'reactstrap';
+
 
 var API_KEY = 'AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY';
 
@@ -34,7 +36,7 @@ class NashData extends Component {
         )
     }
     // Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
-    grabGoogleData(latitude,longitude,name){
+    grabGoogleData(latitude,longitude,name,street_address,city,zip_code){
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         let newName = name.replace(/\s/g, '');
         var component = this
@@ -112,9 +114,10 @@ class NashData extends Component {
             
             if(this.state.click === item.site_name && this.state.googleLoaded === true){
                 return (
-                    <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
-                    <img src={this.state.imgLink} alt="Image of Stuff"/>
+                    {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                    <img src={this.state.imgLink} alt="Location"/>
                     </li>
                     
                 )
@@ -122,15 +125,16 @@ class NashData extends Component {
             }
             if (this.state.click === item.site_name) {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button>
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br/>
-                    <img src={this.state.imgLink} alt="Image of Stuff"/>
+                    {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                    <img src={this.state.imgLink} alt="Location"/>
                     </li>
                 )
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br />{item.street_address}<br />{item.city}, {item.zip_code}<button onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>find place</button></li>
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
                 )
             }
         }
