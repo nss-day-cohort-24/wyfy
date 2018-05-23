@@ -117,6 +117,7 @@ class NashData extends Component {
 
 
     render() {
+
         console.log(this.state,"thisstate");
         if(this.props.loaded === true && this.state.searchNameState === false){
         const wifiAddresses = this.props.data.map((item, index) => {
@@ -125,27 +126,33 @@ class NashData extends Component {
 
             if(this.state.click === item.site_name && this.state.googleLoaded === true){
                 return (
+                  <div>
                     <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
                     <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
+                  </div>
 
                 )
 
             }
             if (this.state.click === item.site_name) {
                 return (
+                  <div>
                     <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br/>
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
                     <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
+                  </div>
                 )
             }
             else {
                 return (
+                  <div>
                     <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
+                  </div>
                 )
             }
         }
@@ -174,9 +181,9 @@ class NashData extends Component {
                         {item.street_address}<br />{item.city}, {item.zip_code}<br />
                         <img src={this.state.imgLink} alt="Location"/>
                         </li>
-    
+
                     )
-    
+
                 }
                 if (this.state.click === item.site_name) {
                     return (
@@ -201,7 +208,7 @@ class NashData extends Component {
             </ul>
             </div>
         )
-    
+
     }else{
 
         return(
@@ -211,7 +218,6 @@ class NashData extends Component {
         )
     }
     }
-
 }
 
 

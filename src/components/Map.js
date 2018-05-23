@@ -6,20 +6,26 @@ console.log('map here');
 
 var API_KEY = 'AIzaSyBFArv5hJebxtu-iUHl_XQYlq4gmuf2Xeo';
 
+const style ={
+  width: '100%',
+  height: '50vh'
+}
+
 
 export class MapContainer extends Component {
 
   render() {
     return (
-    <div className="map-flexbox">
+    <div>
       <Map
         google={this.props.google}
         initialCenter={{
           lat: 36.2088894,
           lng: -86.8120995
         }}
+        style={style}
         zoom={10}
-        className="main-map"
+        // className="main-map"
         >
 
         {
