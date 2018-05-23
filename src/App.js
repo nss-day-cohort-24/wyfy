@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
 import NashData from './components/NashData';
+import BottomNav from './components/BottomNav';
 
 
 
@@ -45,6 +46,7 @@ class App extends Component {
         <MapContainer data={this.state.data} />
         <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/>
 
+        <BottomNav />
       </div>
     )
   }
