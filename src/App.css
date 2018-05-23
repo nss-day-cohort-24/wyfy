@@ -102,3 +102,9 @@ ul li {
     font-size: 25px;
     font-family: 'Nova Mono', sans-serif;
 }
+
+
+/* Turn on wifi alert styles */
+.dismiss-alert-button badge badge-danger {
+    margin-left: 10px;
+}

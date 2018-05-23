@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Alert } from 'reactstrap';
+import { Alert, Badge } from 'reactstrap';
 
 class Reminder extends Component {
 
@@ -7,7 +7,8 @@ class Reminder extends Component {
   return (
     <div>
       <Alert color="success">
-        Please ensure your wifi is turned on, Bruuuh!
+        Please ensure your wifi is on!
+        <Badge color="danger" className="dismiss-alert-button">Dismiss</ Badge>
       </Alert>
     </div>
   )
