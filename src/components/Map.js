@@ -18,6 +18,7 @@ export class MapContainer extends Component {
         {
           this.props.data.map((item, index) => (
             <Marker
+              key= {index}
               title={item.site_name}
               name={item.site_name}
               position={{lat: item.mapped_location.coordinates[1], lng: item.mapped_location.coordinates[0]}}
