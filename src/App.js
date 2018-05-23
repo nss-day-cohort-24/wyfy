@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
-import NashData from './components/NashData';
+import MoveNashData from './components/NashDataMover';
 import BottomNav from './components/BottomNav';
 
 
