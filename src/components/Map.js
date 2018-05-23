@@ -12,9 +12,15 @@ export class MapContainer extends Component {
   render() {
     return (
     <div className="map-flexbox">
-      <Map google={this.props.google} zoom={9} className="main-map">
-
-        <Marker title="current location" />
+      <Map
+        google={this.props.google}
+        initialCenter={{
+          lat: 36.2088894,
+          lng: -86.8120995
+        }}
+        zoom={10}
+        className="main-map"
+        >
 
         {
           this.props.data.map((item, index) => (
