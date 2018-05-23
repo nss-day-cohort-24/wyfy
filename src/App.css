@@ -60,12 +60,24 @@ ul li {
     width: 90%;
     margin: auto;
     overflow: auto;
-    height: 22rem;
+    height: 15rem;
     margin-top: 1.1rem;
 }
 
 .margin-top ul {
     padding: 0;
+}
+
+
+.listDiv li {
+    padding-bottom: 1rem;
+    margin-bottom: .5rem;
+    border-bottom: 1px solid #dddddd;
+}
+
+.listDiv li b {
+    font-size: 1.4rem;
+    color: #222;
 }
 
 .map-size {
@@ -77,6 +89,7 @@ ul li {
     color: #222 !important;
     width: 100% !important;
 }
+
 .fav-icon {
     background-color: white;
     margin-top: 1rem;
@@ -86,7 +99,8 @@ ul li {
 }
 
 .footer {
-    position: fixed;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: 58px;
     /* padding: .5rem 1rem; */
@@ -94,9 +108,14 @@ ul li {
     color: #222;
 }
 
-.bottom-icons{
-    width: 12%;
-}
+.btn-success{
+    background-image: linear-gradient(180deg,rgb(121, 221, 54),#6DB43D);
+    border-bottom: none !important;
+    border-color: transparent !important;
+    border-radius: 3px !important;
+    padding: .2rem 2rem !important;
+    margin-top: .5rem;
+    letter-spacing: 1px;
 
 .fav-h3 {
     font-size: 25px;

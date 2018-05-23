@@ -1,20 +1,30 @@
 #search {
-    border: 1px solid #C3d634;
-    width: 5rem;
-    border-radius: 3px;
+    border: none;
+    width: 8rem;
 }
 
 input#search:focus{
     outline: none !important;
-    box-shadow: 0 0 10px rgba(195, 214, 52,.4);
+    box-shadow: none;
 }
-.searchInputGroup{
-    height: 2rem;
+
+.searchDiv{
+    border: solid 1px #C2D634;
+    border-radius: 3px;
+    background-color:white;
+}
+
+.searchDiv input {
+    font-size: 12px;
+    background-color:white;
+    padding: 5px 5px;
 }
 
 .icon{
-    width: 2rem;
-    margin-right: .5rem;
+    height: 2rem;
+    margin-left: .25rem;
+    float:left;
+    background-color: white;
 }
 
 .icon2{
@@ -23,7 +33,7 @@ input#search:focus{
 
 .navBar{
     /* background-image:linear-gradient(rgb(66, 66, 66), rgb(29, 29, 29)); */
-    background-color: #F9F9F9;
+    background-color: #f3f3f3;
     box-shadow: 0px .025rem .8rem .05rem rgba(32, 32, 32,.3);
     z-index: 90;
 }
