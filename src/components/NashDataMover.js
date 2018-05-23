@@ -44,8 +44,8 @@ class MoveNashData extends React.Component {
         >
         </ButtonChild>
         
-        <NashData
-        />
+    <NashData search={this.props.search} data={this.props.data} loaded={this.props.loaded}/>
+
         </div>
         </div>
       )
