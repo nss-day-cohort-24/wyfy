@@ -67,7 +67,7 @@ class NashData extends Component {
                 //IF statement that assign img link if it exists...
                 if (data.results[0].photos){
                     component.setState({
-                        imgLink: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${data.results[0].photos[0].photo_reference}&key=${API_KEY}`
+                        imgLink: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=250&photoreference=${data.results[0].photos[0].photo_reference}&key=${API_KEY}`
                     })
                 //...ELSE statement that returns state to default if img doesn't exists
                 } else {
@@ -118,7 +118,7 @@ class NashData extends Component {
                     <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
-                    <img src={this.state.imgLink} alt="Location"/>
+                    <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
                     
                 )
@@ -129,7 +129,7 @@ class NashData extends Component {
                     <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br/>
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
-                    <img src={this.state.imgLink} alt="Location"/>
+                    <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
             }

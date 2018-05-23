@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
 import NashData from './components/NashData';
+import BottomNav from './components/BottomNav';
 
 
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
         <Navigation/>
         <MapContainer/>
         <NashData />
-
+        <BottomNav />
       </div>
     )
   }
