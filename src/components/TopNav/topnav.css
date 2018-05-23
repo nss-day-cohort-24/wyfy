@@ -1,20 +1,28 @@
 #search {
-    border: 1px solid #C3d634;
-    width: 5rem;
-    border-radius: 3px;
+    border: none;
+    width: 8rem;
 }
 
 input#search:focus{
     outline: none !important;
-    box-shadow: 0 0 10px rgba(195, 214, 52,.4);
+    box-shadow: none;
 }
-.searchInputGroup{
-    height: 2rem;
+
+.searchDiv{
+    border: solid 1px #C2D634;
+    border-radius: 3px;
+    /* background-color: white; */
+}
+
+.searchDiv input {
+    font-size: 10px;
 }
 
 .icon{
-    width: 2rem;
-    margin-right: .5rem;
+    height: 2rem;
+    margin-left: .25rem;
+    float:left;
+    background-color: white;
 }
 
 .icon2{
