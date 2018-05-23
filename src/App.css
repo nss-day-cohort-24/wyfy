@@ -87,3 +87,8 @@ ul li {
 .bottom-icons{
     width: 12%;
 }
+
+.fav-h3 {
+    font-size: 25px;
+    font-family: 'Nova Mono', sans-serif;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Fav from '../images/wyfy-favorite.svg';
 
 class FavoriteIcon extends Component {
@@ -8,5 +9,6 @@ class FavoriteIcon extends Component {
         )
     }
 }
+
 
 export default FavoriteIcon;
