@@ -11,8 +11,10 @@ class App extends Component {
     super(props);
     this.state = {
       data: [],
-      DataIsLoaded: false
+      DataIsLoaded: false,
+      searchName: "N/A"
     }
+    this.searchName = this.searchName.bind(this);
   }
 
   componentDidMount(){
@@ -23,18 +25,25 @@ class App extends Component {
       .then(function(data) {
           component.setState({
               data: data,
-              DataIsLoaded: true
+              DataIsLoaded: true,
+              searchName: "N/A"
           })
       }
       )
   }
 
+  searchName(name){
+    this.setState({
+      searchName: name
+    })
+  }
+
   render() {
     return (
       <div>
-        <Navigation/>
+        <Navigation search={this.searchName}/>
         <MapContainer data={this.state.data} />
-        <NashData data={this.state.data} loaded={this.state.DataIsLoaded}/>
+        <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/>
 
       </div>
     )
