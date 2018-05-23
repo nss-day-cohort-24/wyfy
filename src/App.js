@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
 import NashData from './components/NashData';
+import Geolocation from './components/Geolocation';
 
 
 
@@ -43,6 +44,7 @@ class App extends Component {
       <div>
         <Navigation search={this.searchName}/>
         <MapContainer data={this.state.data} />
+        <Geolocation />
         <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/>
 
       </div>

@@ -7,9 +7,7 @@ class Geolocation extends React.Component {
         // this.getStuff.bind(this);
     }
 
-    componentDidMount(){
-        console.log("mount?");
-    }
+
 
     getStuff(){
         console.log("get Stuff TEST", this.props);
@@ -20,7 +18,7 @@ class Geolocation extends React.Component {
     }
 
     render() {
-        console.log("render?");
+
         return (
             <button onClick={this.getStuff.bind(this)}>Get Location</button>
         )
