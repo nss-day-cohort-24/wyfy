@@ -13,9 +13,11 @@ class Geolocation extends React.Component {
         console.log("get Stuff TEST", this.props);
         !this.props.isGeolocationAvailable ? console.log("Browser does not support Geolocation") 
         : !this.props.isGeolocationEnabled ? console.log("Geolocation is not enabled")
-        : this.props.coords ? console.log("COORDS", this.props.coords, "LAT", this.props.coords.latitude, "LON", this.props.coords.longitude)
+        : this.props.coords ? this.props.getLocation(this.props.coords)
         : console.log("GETTING LOCATION?", this.props.coords);
     }
+
+
 
     render() {
 

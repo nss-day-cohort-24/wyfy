@@ -20,7 +20,8 @@ class NashData extends Component {
          imgLink: "https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357",
          googlePhone:"N/A",
          googleLoaded:false,
-         searchNameState: false
+         searchNameState: false,
+         geoLocated:this.props.geoLocated
        };
     }
 
@@ -117,7 +118,9 @@ class NashData extends Component {
 
 
     render() {
+        let milesTo = "Click 'Get Location' button to show distance from current Location"
         console.log(this.state,"thisstate");
+        console.log("propssbetch",this.props);
         if(this.props.loaded === true && this.state.searchNameState === false){
         const wifiAddresses = this.props.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
@@ -128,6 +131,7 @@ class NashData extends Component {
                     <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                    {milesTo}
                     <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
 
