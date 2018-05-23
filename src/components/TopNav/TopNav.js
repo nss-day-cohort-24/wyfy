@@ -38,7 +38,7 @@ export default class Navigation extends React.Component {
             <InputGroupAddon addonType="prepend">
               <img src={searchIcon} alt="logo" className="icon" />
             </InputGroupAddon>
-            <Input className="searchBar" type="search" name="search" id="search" placeholder="Enter Name..." onKeyDown={this.search.bind(this)}/>
+            <Input className="searchBar" type="search" name="search" id="search" placeholder="Enter Name..." onKeyUp={this.search.bind(this)}/>
           </InputGroup>
         </Navbar>
       </div>
