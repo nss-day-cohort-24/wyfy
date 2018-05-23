@@ -5,6 +5,7 @@ import MapContainer from './components/Map';
 import MoveNashData from './components/NashDataMover';
 import BottomNav from './components/BottomNav';
 import Reminder from './components/Reminder';
+import LandingModal from './components/Landing';
 // import NashData from './components/NashData';
 
 
@@ -46,6 +47,7 @@ class App extends Component {
       <div>
         <Navigation search={this.searchName}/>
       <Reminder />
+      <LandingModal />
         <MapContainer data={this.state.data} />
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
         <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} />
