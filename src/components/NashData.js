@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FavoriteIcon from './Favorite';
 import '../App.css';
 import { Button } from 'reactstrap';
 
@@ -11,30 +12,40 @@ class NashData extends Component {
     constructor(props) {
         super(props);
        this.state = {
-         data: null,
-         DataIsLoaded: false,
+         // data: this.props.data,
+         // DataIsLoaded: this.props.loaded,
          googleData: null,
          googleOpen: "N/A",
          click: null,
          imgLink: "https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357",
          googlePhone:"N/A",
-         googleLoaded:false
+         googleLoaded:false,
+         searchNameState: false
        };
     }
 
-    componentDidMount(){
-        var component = this
+    // componentDidMount(){
+    //     var component = this
+    //
+    //     fetch("https://data.nashville.gov/resource/terb-nbm6.json")
+    //     .then((resp) => resp.json())
+    //     .then(function(data) {
+    //         component.setState({
+    //             data: data,
+    //             DataIsLoaded: true
+    //         })
+    //     }
+    //     )
+    // }
 
-        fetch("https://data.nashville.gov/resource/terb-nbm6.json")
-        .then((resp) => resp.json())
-        .then(function(data) {
-            component.setState({
-                data: data,
-                DataIsLoaded: true
+    componentWillReceiveProps(){
+        if(this.props.search !== "N/A"){
+            this.setState({
+                searchNameState: true
             })
         }
-        )
     }
+
     // Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
     grabGoogleData(latitude,longitude,name,street_address,city,zip_code){
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -66,7 +77,7 @@ class NashData extends Component {
                 //IF statement that assign img link if it exists...
                 if (data.results[0].photos){
                     component.setState({
-                        imgLink: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${data.results[0].photos[0].photo_reference}&key=${API_KEY}`
+                        imgLink: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=250&photoreference=${data.results[0].photos[0].photo_reference}&key=${API_KEY}`
                     })
                 //...ELSE statement that returns state to default if img doesn't exists
                 } else {
@@ -85,7 +96,7 @@ class NashData extends Component {
                         googleLoaded: true})
                 })
             //...ELSE statement that returns state to default if Google Search data doesn't exist
-            } 
+            }
             else {
                 component.setState({
                     googleOpen: "N/A",
@@ -107,34 +118,34 @@ class NashData extends Component {
 
     render() {
         console.log(this.state,"thisstate");
-        if(this.state.DataIsLoaded === true){
-        const wifiAddresses = this.state.data.map((item, index) => {
+        if(this.props.loaded === true && this.state.searchNameState === false){
+        const wifiAddresses = this.props.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
-            
-            
+
+
             if(this.state.click === item.site_name && this.state.googleLoaded === true){
                 return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
-                    <img src={this.state.imgLink} alt="Location"/>
+                    <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
-                    
+
                 )
 
             }
             if (this.state.click === item.site_name) {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/>{this.state.googleOpen}<br/>
                     {item.street_address}<br />{item.city}, {item.zip_code}<br />
-                    <img src={this.state.imgLink} alt="Location"/>
+                    <center><img src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
+                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
                 )
             }
         }
@@ -151,6 +162,46 @@ class NashData extends Component {
 
         )
 
+    } else if (this.state.searchNameState) {
+        const wifiAddresses = this.props.data.map((item, index) => {
+            let lowerData = item.site_name.toLowerCase();
+            let lowerSearch = this.props.search.toLowerCase();
+            if (lowerData.includes(lowerSearch)) {
+                if(this.state.click === item.site_name && this.state.googleLoaded === true){
+                    return (
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                        <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
+                        {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        <img src={this.state.imgLink} alt="Location"/>
+                        </li>
+    
+                    )
+    
+                }
+                if (this.state.click === item.site_name) {
+                    return (
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                        <br/>{this.state.googleOpen}<br/>
+                        {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        <img src={this.state.imgLink} alt="Location"/>
+                        </li>
+                    )
+                }
+                else {
+                    return (
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
+                    )
+                }
+            }
+        })
+        return (
+            <div className="margin-top">
+            <ul>
+            {wifiAddresses}
+            </ul>
+            </div>
+        )
+    
     }else{
 
         return(
