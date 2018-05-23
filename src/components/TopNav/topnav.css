@@ -15,8 +15,9 @@ input#search:focus{
 }
 
 .searchDiv input {
-    font-size: 10px;
+    font-size: 12px;
     background-color:white;
+    padding: 5px 5px;
 }
 
 .icon{
