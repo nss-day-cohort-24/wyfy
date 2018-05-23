@@ -4,7 +4,9 @@ import Navigation from './components/TopNav/TopNav';
 import MapContainer from './components/Map';
 import NashData from './components/NashData';
 import Geolocation from './components/Geolocation';
+import MoveNashData from './components/NashDataMover';
 import BottomNav from './components/BottomNav';
+// import NashData from './components/NashData';
 
 
 
@@ -60,6 +62,8 @@ class App extends Component {
         <Geolocation getLocation={this.getLocation} />
         <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geoLocated}/>
 
+        {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
+        <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} />
         <BottomNav />
       </div>
     )

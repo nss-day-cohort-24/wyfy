@@ -40,6 +40,15 @@ class NashData extends Component {
     //     )
     // }
 
+    componentDidMount(){
+        //creates an empty array if local storage doesn't exist
+        const parseLibrary = JSON.parse(localStorage.getItem('favorites'));
+        if (!parseLibrary) {
+            let faveItem = [];
+            localStorage.setItem('favorites', JSON.stringify(faveItem));
+        }
+    }
+
     componentWillReceiveProps(){
         if(this.props.search !== "N/A"){
             this.setState({
@@ -132,6 +141,35 @@ class NashData extends Component {
         )
     }
 
+    fave(index, phone){
+        let parseLibrary = JSON.parse(localStorage.getItem('favorites'));
+        let newfaveLocal;
+        if (phone === true) {
+            newfaveLocal = {
+                //targeting name, address, etc..
+                name: document.getElementById(`${`Name` + index}`).textContent,
+                openq: document.getElementById(`${`OpenQ` + index}`).textContent,
+                phone: document.getElementById(`${`Phone` + index}`).textContent ? document.getElementById(`${`Phone` + index}`).textContent : "N/A",
+                address: document.getElementById(`${`Address` + index}`).textContent,
+                cityName: document.getElementById(`${`CityName` + index}`).textContent,
+                zipCode: document.getElementById(`${`ZipCode` + index}`).textContent,
+                image: document.getElementById(`${`Image` + index}`).src
+            }
+        } else {
+            newfaveLocal = {
+                //targeting name, address, etc..
+                name: document.getElementById(`${`Name` + index}`).textContent,
+                openq: document.getElementById(`${`OpenQ` + index}`).textContent,
+                address: document.getElementById(`${`Address` + index}`).textContent,
+                cityName: document.getElementById(`${`CityName` + index}`).textContent,
+                zipCode: document.getElementById(`${`ZipCode` + index}`).textContent,
+                image: document.getElementById(`${`Image` + index}`).src 
+            }
+        }
+        parseLibrary.push(newfaveLocal);
+        localStorage.setItem('favorites', JSON.stringify(parseLibrary));
+    }
+
 
 
     render() {
@@ -155,29 +193,28 @@ class NashData extends Component {
                     console.log("no geolocation");
                 }
                 return (
-                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[0],item.mapped_location.coordinates[1],item.site_name)}>More...</Button>
-                    <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
-                    {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                    <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={true}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                    <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br />Phone: <span id={"Phone" + index}>{this.state.googlePhone}</span><br />
+                    <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
                     {milesTo}
-                    <center><img src={this.state.imgLink} alt="Location"/></center>
+                    <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                     </li>
-
                 )
 
             }
             if (this.state.click === item.site_name) {
                 return (
-                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
-                    <br/>{this.state.googleOpen}<br/>
-                    {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                    <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={false}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                    <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br/>
+                    <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
                     {milesTo}
-                    <center><img src={this.state.imgLink} alt="Location"/></center>
+                    <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b><FavoriteIcon /><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>                    
                 )
             }
         }
@@ -185,7 +222,7 @@ class NashData extends Component {
 
                return(
 
-            <div className="margin-top d-flex justify-content-left">
+            <div className="listDiv margin-top d-flex justify-content-left">
             <ul>
             {wifiAddresses}
             </ul>
@@ -212,11 +249,11 @@ class NashData extends Component {
                         console.log("no geolocation");
                     }
                     return (
-                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
-                        <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
-                        {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={true}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                        <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br />Phone: <span id={"Phone" + index}>{this.state.googlePhone}</span><br />
+                        <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
                         {milesTo}<br />
-                        <img src={this.state.imgLink} alt="Location"/>
+                        <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                         </li>
     
                     )
@@ -224,17 +261,17 @@ class NashData extends Component {
                 }
                 if (this.state.click === item.site_name) {
                     return (
-                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
-                        <br/>{this.state.googleOpen}<br/>
-                        {item.street_address}<br />{item.city}, {item.zip_code}<br />
+                        <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={false}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
+                        <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br/>
+                        <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
                         {milesTo}
-                        <img src={this.state.imgLink} alt="Location"/>
+                        <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                         </li>
                     )
                 }
                 else {
                     return (
-                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>                    
                     )
                 }
             }
