@@ -35,6 +35,7 @@ p {
 
 ul li {
     list-style: none;
+    word-wrap: break-word;
 }
 
 .map-flexbox {
@@ -59,7 +60,7 @@ ul li {
     width: 90%;
     margin: auto;
     overflow: auto;
-    height: 12rem;
+    height: 22rem;
     margin-top: 1.1rem;
 }
 
@@ -67,7 +68,15 @@ ul li {
     padding: 0;
 }
 
-
+.map-size {
+    height: 400px;
+    overflow: hidden;
+}
+.btn-secondary{
+    background-color: white !important;
+    color: #222 !important;
+    width: 100% !important;
+}
 .fav-icon {
     background-color: white;
     margin-top: 1rem;
