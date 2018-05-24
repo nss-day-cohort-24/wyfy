@@ -15,7 +15,7 @@ input#search:focus{
 }
 
 .searchDiv input {
-    font-size: 12px;
+    font-size: 11px;
     background-color:white;
     padding: 5px 5px;
 }
