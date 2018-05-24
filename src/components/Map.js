@@ -63,7 +63,7 @@ export class MapContainer extends Component {
           lat: this.props.currentLat,
           lng: this.props.currentLon
         }}
-        zoom={13}
+        zoom={15}
         className="main-map"
 
 

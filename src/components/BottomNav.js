@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './TopNav/topnav.css';
+import './bottomNav.css';
 // import Top from '../images/wyfy-top.svg';
 import Fav from '../images/wyfy-favs.svg';
 // import Filter from '../images/wyfy-filter.svg';
@@ -33,8 +33,7 @@ class BottomNav extends Component {
 
     render() {
         return(
-            <div className="footer navBar">
-            
+            <div className="footer absoluteFooter">
                 <center>
                 <img src={Fav} alt="search icon" className="icon2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Geolocation getLocation={this.getLocation}/>

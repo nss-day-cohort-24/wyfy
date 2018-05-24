@@ -7,8 +7,3 @@
 .inputStyle:focus {
     outline: none;
 }
-
-.footer {
-    position: absolute;
-    bottom: 0;
-}

@@ -29,7 +29,7 @@ class LogInPage extends Component {
                 </div>
 
                 
-                <div className="container footer">
+                <div className="container absoluteFooter">
                     <div className="py-3 text-center">
                         Don't have an account? <a href="#">Create One</a>
                     </div>
