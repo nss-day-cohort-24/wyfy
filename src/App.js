@@ -64,7 +64,7 @@ class App extends Component {
         <Navigation search={this.searchName}/>
       <Reminder />
       <LandingModal />
-        <MapContainer data={this.state.data} />
+        <MapContainer data={this.state.data} search={this.state.searchName} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated}/>
 
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
         <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated} />
