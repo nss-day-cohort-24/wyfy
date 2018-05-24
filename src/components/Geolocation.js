@@ -22,7 +22,7 @@ class Geolocation extends React.Component {
     render() {
 
         return (
-            <button onClick={this.getStuff.bind(this)}>Get Location</button>
+            <button className="btn btn-primary btn-xs" onClick={this.getStuff.bind(this)}>Get Location</button>
         )
     }
 }

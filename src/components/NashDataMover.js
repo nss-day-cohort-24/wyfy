@@ -38,6 +38,7 @@ class MoveNashData extends React.Component {
         console.log("click");
     }
     render() {
+      console.log("mover props",this.props)
       return (
           <div>
               <div className={ this.state.buttonCondition ? "button toggled" : "button" }>
@@ -46,7 +47,7 @@ class MoveNashData extends React.Component {
         >
         </ButtonChild>
         
-    <NashData search={this.props.search} data={this.props.data} loaded={this.props.loaded}/>
+    <NashData search={this.props.search} data={this.props.data} loaded={this.props.loaded} currentLat={this.props.currentLat} currentLon={this.props.currentLon} geolocated={this.props.geolocated}/>
 
         </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Logo4 from '../Logos/Logo4';
 import './topnav.css';
 import searchIcon from '../../images/wyfy-search.svg';
+import Geolocation from '../Geolocation'
 
 import {
   Navbar,
@@ -13,6 +14,7 @@ export default class Navigation extends React.Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.getLocation = this.getLocation.bind(this);
     this.state = {
       isOpen: false
     };
@@ -22,16 +24,26 @@ export default class Navigation extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+  getLocation(coords){
+    this.setState({
+      geolocated:true,
+      latitude: coords.latitude,
+      longitude:coords.longitude
+    })
+    this.props.getLocation(coords);
+  }
 
   search(event){
     this.props.search(document.getElementById("search").value);
   }
 
   render() {
+    console.log(this.state,"navstate");
     return (
       <div>
         <Navbar className="d-flex justify-content-between navBar">         
           <Logo4 />
+          <Geolocation getLocation={this.getLocation}/>
           <div className="searchDiv d-flex align-items-center">
             <img src={searchIcon} className="icon"/>
             <Input className="searchBar" type="search" name="search" id="search" placeholder="Search Zip or Type..." onKeyUp={this.search.bind(this)}/>

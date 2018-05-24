@@ -42,10 +42,11 @@ class App extends Component {
 
   getLocation(coords){
     this.setState({
-      geoLocated:true,
+      geolocated:true,
       latitude: coords.latitude,
       longitude:coords.longitude
     })
+
   }
 
   searchName(name){
@@ -55,15 +56,16 @@ class App extends Component {
   }
 
   render() {
+    console.log("app state",this.state);
     return (
       <div>
-        <Navigation search={this.searchName}/>
-        <MapContainer data={this.state.data} />
+        <Navigation search={this.searchName} getLocation={this.getLocation}/>
+        <MapContainer data={this.state.data} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated} />
         <Geolocation getLocation={this.getLocation} />
-        <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geoLocated}/>
+        {/*<NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geoLocated}/> */}
 
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
-        <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} />
+        <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated} />
         <BottomNav />
       </div>
     )

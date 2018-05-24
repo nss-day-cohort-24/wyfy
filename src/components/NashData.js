@@ -21,7 +21,7 @@ class NashData extends Component {
          googlePhone:"N/A",
          googleLoaded:false,
          searchNameState: false,
-         geoLocated:this.props.geoLocated
+         geoLocated:this.props.geolocated
        };
        this.deg2rad = this.deg2rad.bind(this);
     }
@@ -47,13 +47,27 @@ class NashData extends Component {
             let faveItem = [];
             localStorage.setItem('favorites', JSON.stringify(faveItem));
         }
+
     }
+
 
     componentWillReceiveProps(){
         if(this.props.search !== "N/A"){
             this.setState({
                 searchNameState: true
             })
+        }
+        if (this.props.geolocated === true){
+            console.log("GEOTRUE");
+            // milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+            // milesTo = milesTo * .6;
+            // milesTo = Math.round(milesTo * 100) / 100;
+            // milesTo = `${milesTo} miles away`;
+            // console.log(milesTo," miles to location")                
+
+        }
+        else {
+            console.log("no geolocation");
         }
     }
 
@@ -173,25 +187,27 @@ class NashData extends Component {
 
 
     render() {
-        console.log(this.state,this.props);
+        console.log("nashdata state and props",this.state,this.props);
         let milesTo = ""
         if(this.props.loaded === true && this.state.searchNameState === false){
         const wifiAddresses = this.props.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
 
+            if (this.props.geolocated === true){
+                milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+                milesTo = milesTo * .6;
+                milesTo = Math.round(milesTo * 100) / 100;
+                milesTo = `${milesTo} miles away`;
+                console.log(milesTo," miles to location")             
+
+            }
+            else {
+                console.log("no geolocation");
+            }
+
 
             if(this.state.click === item.site_name && this.state.googleLoaded === true){
-                if (this.props.geolocated === true){
-                    milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
-                    milesTo = milesTo * .6;
-                    milesTo = Math.round(milesTo * 100) / 100;
-                    milesTo = `${milesTo} miles away`;
-                    console.log(milesTo," miles to location")                
 
-                }
-                else {
-                    console.log("no geolocation");
-                }
                 return (
                     <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={true}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br />Phone: <span id={"Phone" + index}>{this.state.googlePhone}</span><br />
@@ -214,7 +230,7 @@ class NashData extends Component {
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>                    
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>{milesTo}</li>                    
                 )
             }
         }
@@ -233,6 +249,17 @@ class NashData extends Component {
 
     } else if (this.state.searchNameState) {
         const wifiAddresses = this.props.data.map((item, index) => {
+            if (this.props.geolocated === true){
+                milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+                milesTo = milesTo * .6;
+                milesTo = Math.round(milesTo * 100) / 100;
+                milesTo = `${milesTo} miles away`;
+                console.log(milesTo," miles to location")                
+
+            }
+            else {
+                console.log("no geolocation");
+            }
             let lowerData = item.site_name.toLowerCase();
             let lowerSearch = this.props.search.toLowerCase();
             if (lowerData.includes(lowerSearch)) {
@@ -271,7 +298,7 @@ class NashData extends Component {
                 }
                 else {
                     return (
-                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>                    
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>{milesTo}</li>                    
                     )
                 }
             }
