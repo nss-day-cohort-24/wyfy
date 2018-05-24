@@ -179,7 +179,6 @@ class NashData extends Component {
                     <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
                     <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                     </li>
-                  </div>
                 )
             }
             else {
