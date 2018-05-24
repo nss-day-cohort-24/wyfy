@@ -131,7 +131,7 @@ class NashData extends Component {
                 //targeting name, address, etc..
                 name: document.getElementById(`${`Name` + index}`).textContent,
                 openq: document.getElementById(`${`OpenQ` + index}`).textContent,
-                phone: document.getElementById(`${`Phone` + index}`).textContent ? document.getElementById(`${`Phone` + index}`).textContent : "N/A",
+                phone: document.getElementById(`${`Phone` + index}`).textContent,
                 address: document.getElementById(`${`Address` + index}`).textContent,
                 cityName: document.getElementById(`${`CityName` + index}`).textContent,
                 zipCode: document.getElementById(`${`ZipCode` + index}`).textContent,
