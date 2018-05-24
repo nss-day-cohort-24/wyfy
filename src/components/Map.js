@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {GoogleApiWrapper, Map, Marker} from 'google-maps-react';
 import '../App.css';
 
-console.log('map here');
 
 var API_KEY = 'AIzaSyBFArv5hJebxtu-iUHl_XQYlq4gmuf2Xeo';
 
@@ -54,6 +53,42 @@ export class MapContainer extends Component {
       })
     }
     
+
+    if(this.props.geolocated === true){
+      return (
+        <div className="map-flexbox">
+        <Map
+        google={this.props.google}
+        center={{
+          lat: this.props.currentLat,
+          lng: this.props.currentLon
+        }}
+        zoom={13}
+        className="main-map"
+
+
+        >
+
+        {markerMap}
+
+        {
+
+            <Marker
+              google={this.props.google}
+              name="Current Location"
+              position={{lat: this.props.currentLat, lng: this.props.currentLon}}
+ />
+
+        }
+
+
+
+      </Map>
+      
+      </div>
+
+        );
+    }else{
     return (
     <div className="map-flexbox">
       <Map
@@ -82,6 +117,7 @@ export class MapContainer extends Component {
       </Map>
     </div>
     );
+  }
   }
 }
 
