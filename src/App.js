@@ -59,7 +59,7 @@ class App extends Component {
     return (
       <div>
         <Navigation search={this.searchName} getLocation={this.getLocation}/>
-        <MapContainer data={this.state.data} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated} />
+        <MapContainer search={this.state.searchName} data={this.state.data} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated} />
         {/*<NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geoLocated}/> */}
 
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
