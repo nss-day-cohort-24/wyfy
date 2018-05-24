@@ -1,15 +1,21 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './Landing.css';
+import Geolocation from './Geolocation';
 
-class ModalExample extends React.Component {
+
+class LandingModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: true
+      modal: true,
+      geolocated:false,
+      latitude: null,
+      longitude:null
     };
 
     this.toggle = this.toggle.bind(this);
+    this.getLocation = this.getLocation.bind(this);
   }
 
   toggle() {
@@ -18,16 +24,27 @@ class ModalExample extends React.Component {
     });
   }
 
+  getLocation(coords){
+       this.setState({
+         geolocated:true,
+         latitude: coords.latitude,
+         longitude:coords.longitude
+       })
+
+   }
+
   render() {
+    
     return (
       <div>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle} className="modal-title">Welcome to WyFy!</ModalHeader>
           <ModalBody >
-            Get started by finding your current location!
+            WyFy uses your devices location services to find wifi near your current location!
           </ModalBody>
           <ModalFooter>
-            <Button color="success" onClick={this.toggle} className="modal-map-button">View Map</Button>{' '}
+            <Button color="success" onClick={this.toggle} className="modal-map-button">Got it!</Button>{' '}
+
           </ModalFooter>
         </Modal>
       </div>
@@ -35,4 +52,4 @@ class ModalExample extends React.Component {
   }
 }
 
-export default ModalExample;
+export default LandingModal;

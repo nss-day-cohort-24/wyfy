@@ -58,12 +58,13 @@ class App extends Component {
   }
 
   render() {
+    console.log('Jesie', this.state, this.props);
     return (
       <div>
 
         <Navigation search={this.searchName}/>
       <Reminder />
-      <LandingModal />
+      <LandingModal getLocation={this.getLocation} />
         <MapContainer data={this.state.data} search={this.state.searchName} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated}/>
 
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
