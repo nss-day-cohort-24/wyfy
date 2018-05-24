@@ -1,0 +1,7 @@
+LocationItem example:
+
+```js
+
+<LocationItem />
+
+```

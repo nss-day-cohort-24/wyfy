@@ -1,0 +1,30 @@
+@import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+}
+
+.location-item {
+  padding: 1rem;
+  display: flex;
+}
+
+.location-item-info {
+
+}
+
+.location-item-distance {
+  width: 50%;
+  height: 75%;
+}
+
+.location-item-distance-number {
+  font-size: 3rem;
+  color: grey;
+}
+
+.btn-success {
+  width: 50%;
+}
