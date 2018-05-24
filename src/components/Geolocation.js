@@ -1,6 +1,7 @@
 import React from 'react';
 import { geolocated } from 'react-geolocated';
-import Location from '../images/current-loc.png';
+import Location from '../images/wyfy-target.svg';
+
  
 class Geolocation extends React.Component {
     // constructor(props){
