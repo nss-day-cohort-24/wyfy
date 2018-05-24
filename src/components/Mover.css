@@ -11,12 +11,11 @@ body {
   }
   .button {
     display: inline-block;
+    width: 100%;
       font-size: 18px;
-      padding: 10px 30px; 
-    margin-right: 10px;
-    margin-bottom: 30px;
-      box-shadow:	0px 1px 3px 0px rgba(0, 0, 0, .3);
-    cursor: pointer;
+    height: 30vh;
+    position: absolute;
+    bottom: 58px; 
   }
   .button-small {
     padding: 5px 10px;  
@@ -25,9 +24,9 @@ body {
   .toggled {
       background-color: #ffffff;
       position: relative;
-      top: -300px;
-      height: 500px;
-      
+      top: -365px;
+      bottom: -300px;
+      height:90vh !important;
   }
   button {
     margin-top: 80px;
@@ -43,4 +42,21 @@ body {
   }
   #moverBtn:focus{
     outline: none;
+  }
+
+  .imageArrow {
+background-image: url('../images/wyfy-arrow.svg');
+    height: 50px;
+    width: 50px;
+    margin-bottom: -35px;
+    margin-top: 20px;
+  }
+  
+  
+  .imgtoggle{
+    background-image: url('../images/wyfy-arrowDown.svg') !important;
+    height: 50px;
+    width: 50px;
+    margin-top: 1px !important;
+
   }
