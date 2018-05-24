@@ -88,7 +88,7 @@ let Logo = (props) => {
 
 ##### Search
 <p align="center">
-<img src="src/images/ReadmeImg/Capture5.png" width="250"/>
+<img src="src/images/ReadmeImg/Capture5.PNG" width="250"/>
 </p>
 ```javascript
 <Input className="searchBar" type="search" name="search" id="search" placeholder="Search Type..." onKeyUp={this.search.bind(this)}/>
@@ -97,7 +97,7 @@ let Logo = (props) => {
 
 ### Map
 <p align="center">
-<img src="src/images/ReadmeImg/Capture6.png" width="250"/>
+<img src="src/images/ReadmeImg/Capture6.PNG" width="250"/>
 </p>
 ```javascript
 import React, {Component} from  'react';
@@ -125,7 +125,7 @@ apiKey: (API_KEY)
 ---
 ### Map Markers
 <p align="center">
-<img src="src/images/ReadmeImg/Capture7.png" width="250"/>
+<img src="src/images/ReadmeImg/Capture7.PNG" width="250"/>
 </p>
 ```javascript
 {
@@ -199,7 +199,7 @@ componentDidMount(){
 ```
 ### BottomNav
 <p align="center">
-<img src="src/images/ReadmeImg/Capture8.png" width="250"/>
+<img src="src/images/ReadmeImg/Capture8.PNG" width="250"/>
 </p>
 ```javascript
 
