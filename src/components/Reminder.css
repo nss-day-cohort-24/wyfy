@@ -1,0 +1,7 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+
+/* Turn on wifi alert styles */
+.dismiss-alert-button {
+    margin: 0px 0px 5px 15px;
+}

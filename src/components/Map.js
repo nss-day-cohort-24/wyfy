@@ -93,6 +93,7 @@ export class MapContainer extends Component {
     <div className="map-flexbox">
       <Map
         google={this.props.google}
+      /*Initial center determines the first render of the map; After user clicks "find my location" button */
         initialCenter={{
           lat: 36.2088894,
           lng: -86.8120995

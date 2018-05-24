@@ -6,6 +6,8 @@ import MapContainer from './components/Map';
 // import Geolocation from './components/Geolocation';
 import MoveNashData from './components/NashDataMover';
 import BottomNav from './components/BottomNav';
+import Reminder from './components/Reminder';
+import LandingModal from './components/Landing';
 // import NashData from './components/NashData';
 
 
@@ -58,9 +60,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navigation search={this.searchName} getLocation={this.getLocation}/>
-        <MapContainer search={this.state.searchName} data={this.state.data} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated} />
-        {/*<NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geoLocated}/> */}
+
+        <Navigation search={this.searchName}/>
+      <Reminder />
+      <LandingModal />
+        <MapContainer data={this.state.data} />
 
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
         <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} currentLat={this.state.latitude} currentLon={this.state.longitude} geolocated={this.state.geolocated} />
