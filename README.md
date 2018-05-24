@@ -69,36 +69,38 @@
 4. Include Private Businesses & Volunteers in Future Locations
 ---
 ## React Component Overview
-### Landing
 ---
-### Top Navigation
-```javascript
-render()  {
-  return (
-	<div>
-		<Navbar className="d-flex justify-content-between navBar">
-			<Logo4 />
-			<InputGroup className="searchInputGroup col-6">
-				<InputGroupAddon addonType="prepend">
-					<img src={searchIcon}  alt="logo" className="icon"  />
-				</InputGroupAddon>
-				<Input className="searchBar"  type="search"  name="search"  id="search"  placeholder="Enter Zip..."  />
-			</InputGroup>
-		</Navbar>
-	</div>
-    );
-  }
-}
-```
+
 ##### Logo
 <p align="center">
-<img src="src/images/wyfy-logo4.png" width="250"/>
+<img src="src/images/wyfy-logo4.png" width="400"/>
 </p>
 
+```javascript
+let Logo = (props) => {
+    return (
+        <div>
+            <img src={logo} alt="logo" className="logo" />
+        </div>
+    );
+}
+```
+
 ##### Search
+<p align="center">
+<img src="src/images/ReadmeImg/Capture5.PNG" width="400"/>
+</p>
+
+```javascript
+<Input className="searchBar" type="search" name="search" id="search" placeholder="Search Type..." onKeyUp={this.search.bind(this)}/>
+```
 ---
 
 ### Map
+
+<p align="center">
+<img src="src/images/ReadmeImg/Capture6.PNG" width="400"/>
+</p>
 
 ```javascript
 import React, {Component} from  'react';
@@ -124,6 +126,24 @@ apiKey: (API_KEY)
 })(MapContainer)
 ```
 ---
+### Map Markers
+<p align="center">	
+<img src="src/images/ReadmeImg/Capture7.PNG" width="400"/>
+</p>
+
+```javascript
+{
+          this.props.data.map((item, index) => (
+            <Marker
+              key= {index}
+              title={item.site_name}
+              name={item.site_name}
+              position={{lat: item.mapped_location.coordinates[1], lng: item.mapped_location.coordinates[0]}}
+            />
+          ))
+        }
+```
+---
 ### Geolocation
 ```javascript
 import { geolocated } from  'react-geolocated';
@@ -147,15 +167,7 @@ class  Geolocation  extends  React.Component {
 }
 ```
 ---
-### Bottom Navigation
----
-### Data
-##### Imports
-```javascript
-import React, { Component } from  'react';
-import  '../App.css';
-import { Button } from  'reactstrap';
-```
+
 ##### State
 ```javascript
 class  NashData  extends  Component {  
@@ -188,129 +200,46 @@ componentDidMount(){
 	)
 }
 ```
+---
+### BottomNav
+<p align="center">
+<img src="src/images/ReadmeImg/Capture8.PNG" width="250"/>
+</p>
+
+#### Geolocation Button
+<p align="center">
+<img src="src/images/wyfy-target.svg" width="250"/>
+</p>
+
+##### Props
+
 ```javascript
-// Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
-    grabGoogleData(latitude,longitude,name,street_address,city,zip_code){
-        var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        let newName = name.replace(/\s/g, '');
-        var component = this
-        console.log(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
-        fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
-        .then((resp) => resp.json())
-        .then(function(data) {
-            //IF statement that checks on whether or on Google Search data exists...
-            if (data.results.length > 0) {
-                //IF statements that assign "OPEN" or "CLOSE" to googleOpen state if it exists and based on true or false statement
-                if (data.results[0].opening_hours) {
-                    if (data.results[0].opening_hours.open_now) {
-                        component.setState({
-                            googleOpen: "OPEN"
-                        })
-                    } else if (!data.results[0].opening_hours.open_now) {
-                        component.setState({
-                            googleOpen: "CLOSED"
-                        })
-                    }
-                //...ELSE statement that returns state to default if open now data doesn't exists
-                } else {
-                    component.setState({
-                        googleOpen: "N/A"
-                    })
-                }
-                //IF statement that assign img link if it exists...
-                if (data.results[0].photos){
-                    component.setState({
-                        imgLink: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${data.results[0].photos[0].photo_reference}&key=${API_KEY}`
-                    })
-                //...ELSE statement that returns state to default if img doesn't exists
-                } else {
-                    component.setState({
-                        imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
-                    })
-                }
-                console.log(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
-                fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
-                .then((resp) => resp.json())
-                .then(function(data) {
-
-                    console.log("Advanced Data",data);
-                    component.setState({
-                        googlePhone: data.result.formatted_phone_number,
-                        googleLoaded: true})
-                })
-            //...ELSE statement that returns state to default if Google Search data doesn't exist
-            } 
-            else {
-                component.setState({
-                    googleOpen: "N/A",
-                    googlePhone: "N/A",
-                    imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
-                })
-            }
-            //Set the general data to googleData state
-            component.setState({
-                googleData: data.results[0],
-                click: name
-
-            })
+constructor(props) {
+        super(props);
+        this.state = {
+            geolocated:false,
+            latitude: null,
+            longitude:null
         }
-        )
+
+        this.getLocation = this.getLocation.bind(this);
+
+      }
+
+      getLocation(coords){
+        this.setState({
+          geolocated:true,
+          latitude: coords.latitude,
+          longitude:coords.longitude
+        })
+        this.props.getLocation(coords);
     }
 ```
-##### Render 
+---
+##### Render
+
 ```javascript
- render() {
-        console.log(this.state,"thisstate");
-        if(this.state.DataIsLoaded === true){
-        const wifiAddresses = this.state.data.map((item, index) => {
-            //IF statement that checks on whether or not the one clicked is the one mapped
-            if(this.state.click === item.site_name && this.state.googleLoaded === true){
-                return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
-                    <br/>{this.state.googleOpen}<br />Phone: {this.state.googlePhone}<br />
-                    {item.street_address}<br />{item.city}, {item.zip_code}<br />
-                    <img src={this.state.imgLink} alt="Location"/>
-                    </li>        
-                )
-            }
-            if (this.state.click === item.site_name) {
-                return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
-                    <br/>{this.state.googleOpen}<br/>
-                    {item.street_address}<br />{item.city}, {item.zip_code}<br />
-                    <img src={this.state.imgLink} alt="Location"/>
-                    </li>
-                )
-            }
-            else {
-                return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>
-                )
-            }
-        }
-    )
-
-                return(
-            <div className="margin-top d-flex justify-content-left">
-                <ul>{wifiAddresses}</ul>
-            </div>
-            )
-
-    }else{
-
-        return(
-        <div>
-        Loading...
-        </div>
-        )
-    }
-    }
-}
+<Geolocation getLocation={this.getLocation}/>
 ```
-##### Export
-```javascript
-export default NashData;
-```
-___
 
 All code and design of Wyfy© were developed by UX UI Design and Front-end Development Students, Cohort 24 2018.

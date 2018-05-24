@@ -2,7 +2,9 @@ import React from 'react';
 // import { Button } from 'reactstrap';
 import NashData from './NashData';
 import '.././App.css';
-import './Mover.css'
+import './Mover.css';
+import upArrow from '../images/upArrow.png';
+// import './bootsrap';
 
 
 class MoveNashData extends React.Component {
@@ -17,13 +19,11 @@ class MoveNashData extends React.Component {
       this.click = this.click.bind(this)
     }
     handleClick() {
-        console.log("test handle")
       this.setState({
         condition: !this.state.condition
       })
     }
     handleButtonClick(){
-        console.log("test button handle")
 
         this.setState({
             buttonCondition: !this.state.buttonCondition
@@ -33,7 +33,6 @@ class MoveNashData extends React.Component {
     click(){
         this.handleButtonClick();
         this.handleClick();
-        console.log("click");
     }
     render() {
       return (
@@ -44,7 +43,7 @@ class MoveNashData extends React.Component {
         >
         </ButtonChild>
         
-    <NashData search={this.props.search} data={this.props.data} loaded={this.props.loaded}/>
+    <NashData search={this.props.search} data={this.props.data} loaded={this.props.loaded} currentLat={this.props.currentLat} currentLon={this.props.currentLon} geolocated={this.props.geolocated}/>
 
         </div>
         </div>
@@ -56,12 +55,15 @@ class MoveNashData extends React.Component {
       render() {
           return (
               <div>
-        <button
+                <div className="d-flex justify-content-center">
+        <button id="moverBtn"
           className={ this.props.className }
           onClick={ this.props.toggleClassName }
-        >Mover
+        >        <img src={upArrow} alt="up arrow" />
+
           { this.props.children }
         </button>
+        </div>
         </div>
       )    
     }
