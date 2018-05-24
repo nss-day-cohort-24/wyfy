@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Alert, Badge } from 'reactstrap';
 import './Reminder.css';
 
+
 class Reminder extends React.Component {
     // Event listener to close wifi reminder alert.
 constructor(props) {
@@ -12,22 +13,30 @@ constructor(props) {
     };
 
     this.onDismiss = this.onDismiss.bind(this);
-  }
+    }
 
-  onDismiss () {
+    onDismiss () {
     this.setState({ visible: false });
-  }
+    }
+    
+    componentDidMount (){
+        setTimeout(() => {
+     this.setState({ visible: false });     
+        }, 5000)
+    }
 
-  render (){
+  render () {
   return (
     <div>
       <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss} >
         Please ensure your wifi is on!
-        <Badge color="danger" className="dismiss-alert-button" >Dismiss</ Badge>
       </Alert>
     </div>
   )
 }
+
+
+
 }
 
 export default Reminder;
