@@ -9,7 +9,7 @@ import {
   Input
  } from 'reactstrap';
 
-export default class Navigation extends React.Component {
+export default class TopNavigation extends React.Component {
   constructor(props) {
     super(props);
 

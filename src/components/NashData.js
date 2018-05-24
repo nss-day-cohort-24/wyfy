@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FavoriteIcon from './Favorite';
 import '../App.css';
 import { Button } from 'reactstrap';
+import './NashData.css';
 
 
 var API_KEY = 'AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY';
@@ -185,7 +186,7 @@ class NashData extends Component {
                 milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
                 milesTo = milesTo * .6;
                 milesTo = Math.round(milesTo * 100) / 100;
-                milesTo = `${milesTo} miles away`;
+                milesTo = `${milesTo}mi`;
 
             }
             else {
@@ -199,7 +200,7 @@ class NashData extends Component {
                     <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={true}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br />Phone: <span id={"Phone" + index}>{this.state.googlePhone}</span><br />
                     <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
-                    {milesTo}
+                    <h3 className="miles">{milesTo}</h3>
                     <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
@@ -210,14 +211,14 @@ class NashData extends Component {
                     <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={false}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br/>
                     <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
-                    {milesTo}
+                    <h3 className="miles">{milesTo}</h3>
                     <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>{milesTo}</li>                    
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button><h3 className="miles">{milesTo}</h3></li>                    
                 )
             }
         }
@@ -240,7 +241,7 @@ class NashData extends Component {
                 milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
                 milesTo = milesTo * .6;
                 milesTo = Math.round(milesTo * 100) / 100;
-                milesTo = `${milesTo} miles away`;
+                milesTo = `${milesTo}mi`;
 
             }
             else {
@@ -254,7 +255,7 @@ class NashData extends Component {
                         milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
                         milesTo = milesTo * .6;
                         milesTo = Math.round(milesTo * 100) / 100;
-                        milesTo = `${milesTo} miles away`;
+                        milesTo = `${milesTo}mi`;
     
                     }
                     else {
@@ -264,7 +265,7 @@ class NashData extends Component {
                         <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={true}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                         <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br />Phone: <span id={"Phone" + index}>{this.state.googlePhone}</span><br />
                         <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
-                        {milesTo}<br />
+                        <h3 className="miles">{milesTo}</h3><br />
                         <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                         </li>
     
@@ -276,14 +277,14 @@ class NashData extends Component {
                         <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={false}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                         <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br/>
                         <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
-                        {milesTo}
+                        <h3 className="miles">{milesTo}</h3>
                         <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                         </li>
                     )
                 }
                 else {
                     return (
-                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>{milesTo}</li>                    
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button><h3 className="miles">{milesTo}</h3></li>                    
                     )
                 }
             }

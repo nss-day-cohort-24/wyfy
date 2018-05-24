@@ -99,16 +99,6 @@ ul li {
     float: right;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 58px;
-    /* padding: .5rem 1rem; */
-    background-color: #CDD4D1;
-    color: #222;
-
-}
 
 .btn-success{
     background-image: linear-gradient(180deg,rgb(121, 221, 54),#6DB43D);
@@ -123,4 +113,9 @@ ul li {
 .fav-h3 {
     font-size: 25px;
     font-family: 'Nova Mono', sans-serif;
+}
+
+.absoluteFooter {
+    position: absolute;
+    bottom: 0;
 }
