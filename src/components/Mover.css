@@ -13,11 +13,9 @@ body {
     display: inline-block;
     width: 100%;
       font-size: 18px;
-      padding: 10px 30px; 
-    margin-right: 10px;
-    margin-bottom: 30px;
-      box-shadow:	0px 1px 3px 0px rgba(0, 0, 0, .3);
-    cursor: pointer;
+    height: 30vh;
+    position: absolute;
+    bottom: 58px;
   }
   .button-small {
     padding: 5px 10px;  
@@ -26,9 +24,9 @@ body {
   .toggled {
       background-color: #ffffff;
       position: relative;
-      top: -300px;
-      height: 500px;
-      
+      top: -365px;
+      bottom: -300px;
+      height:90vh !important;     
   }
   button {
     margin-top: 80px;
@@ -47,14 +45,16 @@ body {
   }
 
   .imageArrow {
-background-image: url('../images/downArrow.png');
+background-image: url('../images/upArrow.png');
     height: 50px;
     width: 50px;
+    margin-bottom: -25px;
+    margin-top: 20px;
   }
   
   
   .imgtoggle{
-    background-image: url('../images/upArrow.png') !important;
+    background-image: url('../images/downArrow.png') !important;
     height: 50px;
     width: 50px;
   }

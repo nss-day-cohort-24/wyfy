@@ -3,8 +3,6 @@ import React from 'react';
 import NashData from './NashData';
 import '.././App.css';
 import './Mover.css';
-import upArrow from '../images/upArrow.png';
-import downArrow from '../images/upArrow.png';
 // import './bootsrap';
 
 
