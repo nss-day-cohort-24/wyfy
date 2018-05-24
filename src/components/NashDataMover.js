@@ -19,13 +19,11 @@ class MoveNashData extends React.Component {
       this.click = this.click.bind(this)
     }
     handleClick() {
-        console.log("test handle")
       this.setState({
         condition: !this.state.condition
       })
     }
     handleButtonClick(){
-        console.log("test button handle")
 
         this.setState({
             buttonCondition: !this.state.buttonCondition
@@ -35,10 +33,8 @@ class MoveNashData extends React.Component {
     click(){
         this.handleButtonClick();
         this.handleClick();
-        console.log("click");
     }
     render() {
-      console.log("mover props",this.props)
       return (
           <div>
               <div className={ this.state.buttonCondition ? "button toggled" : "button" }>

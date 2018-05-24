@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {GoogleApiWrapper, Map, Marker} from 'google-maps-react';
 import '../App.css';
 
-console.log('map here');
 
 var API_KEY = 'AIzaSyBFArv5hJebxtu-iUHl_XQYlq4gmuf2Xeo';
 
@@ -10,7 +9,7 @@ var API_KEY = 'AIzaSyBFArv5hJebxtu-iUHl_XQYlq4gmuf2Xeo';
 export class MapContainer extends Component {
 
   render() {
-    console.log("mapprops",this.props);
+
     if(this.props.geolocated === true){
       return (
         <div className="map-flexbox">

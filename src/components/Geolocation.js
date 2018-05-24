@@ -1,11 +1,12 @@
 import React from 'react';
 import { geolocated } from 'react-geolocated';
+import Location from '../images/current-loc.png';
  
 class Geolocation extends React.Component {
-    constructor(props){
-        super(props);
-        // this.getStuff.bind(this);
-    }
+    // constructor(props){
+    //     super(props);
+    //     // this.getStuff.bind(this);
+    // }
 
 
 
@@ -22,7 +23,8 @@ class Geolocation extends React.Component {
     render() {
 
         return (
-            <button className="btn btn-primary btn-xs" onClick={this.getStuff.bind(this)}>Get Location</button>
+            <img src={Location} alt="current location"  onClick={this.getStuff.bind(this)} className="icon2"/>
+            // <button className="btn btn-primary btn-xs" onClick={this.getStuff.bind(this)}>Get Location</button>
         )
     }
 }
