@@ -210,7 +210,9 @@ componentDidMount(){
 <p align="center">
 <img src="src/images/wyfy-target.svg" width="250"/>
 </p>
+
 ##### Props
+
 ```javascript
 constructor(props) {
         super(props);
