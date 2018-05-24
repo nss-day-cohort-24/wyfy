@@ -20,8 +20,10 @@ class NashData extends Component {
          imgLink: "https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357",
          googlePhone:"N/A",
          googleLoaded:false,
-         searchNameState: false
+         searchNameState: false,
+         geoLocated:this.props.geolocated
        };
+       this.deg2rad = this.deg2rad.bind(this);
     }
 
     // componentDidMount(){
@@ -45,7 +47,9 @@ class NashData extends Component {
             let faveItem = [];
             localStorage.setItem('favorites', JSON.stringify(faveItem));
         }
+
     }
+
 
     componentWillReceiveProps(){
         if(this.props.search !== "N/A"){
@@ -53,14 +57,33 @@ class NashData extends Component {
                 searchNameState: true
             })
         }
+
     }
+
+
+    getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+        var dLon = this.deg2rad(lon2-lon1); 
+        var a = 
+          Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2)
+          ; 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c; // Distance in km
+        return d;
+      }
+
+      deg2rad(deg) {
+        return deg * (Math.PI/180)
+      }
 
     // Ideally, I will be able to run this function when list item is clicked, and it will drop down with more details of the company.
     grabGoogleData(latitude,longitude,name,street_address,city,zip_code){
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         let newName = name.replace(/\s/g, '');
         var component = this
-        console.log(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
         fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCB2yFmL6AughPtoX4pP_4UMK6zGvApHiY&location=${latitude},${longitude}&radius=2000&keyword=${newName}`)
         .then((resp) => resp.json())
         .then(function(data) {
@@ -94,12 +117,10 @@ class NashData extends Component {
                         imgLink:"https://vignette.wikia.nocookie.net/dumbway2sdie/images/5/5b/Kidneys2.gif/revision/latest?cb=20171219071357"
                     })
                 }
-                console.log(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
                 fetch(proxyUrl + `https://maps.googleapis.com/maps/api/place/details/json?placeid=${data.results[0].place_id}&key=${API_KEY}`)
                 .then((resp) => resp.json())
                 .then(function(data) {
 
-                    console.log("Advanced Data",data);
                     component.setState({
                         googlePhone: data.result.formatted_phone_number,
                         googleLoaded: true})
@@ -131,7 +152,7 @@ class NashData extends Component {
                 //targeting name, address, etc..
                 name: document.getElementById(`${`Name` + index}`).textContent,
                 openq: document.getElementById(`${`OpenQ` + index}`).textContent,
-                phone: document.getElementById(`${`Phone` + index}`).textContent ? document.getElementById(`${`Phone` + index}`).textContent : "N/A",
+                phone: document.getElementById(`${`Phone` + index}`).textContent,
                 address: document.getElementById(`${`Address` + index}`).textContent,
                 cityName: document.getElementById(`${`CityName` + index}`).textContent,
                 zipCode: document.getElementById(`${`ZipCode` + index}`).textContent,
@@ -155,17 +176,30 @@ class NashData extends Component {
 
 
     render() {
-        console.log(this.state,"thisstate");
+        let milesTo = ""
         if(this.props.loaded === true && this.state.searchNameState === false){
         const wifiAddresses = this.props.data.map((item, index) => {
             //IF statement that checks on whether or not the one clicked is the one mapped
 
+            if (this.props.geolocated === true){
+                milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+                milesTo = milesTo * .6;
+                milesTo = Math.round(milesTo * 100) / 100;
+                milesTo = `${milesTo} miles away`;
+
+            }
+            else {
+                console.log("no geolocation");
+            }
+
 
             if(this.state.click === item.site_name && this.state.googleLoaded === true){
+
                 return (
                     <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={true}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br />Phone: <span id={"Phone" + index}>{this.state.googlePhone}</span><br />
                     <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
+                    {milesTo}
                     <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
@@ -176,13 +210,14 @@ class NashData extends Component {
                     <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={false}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                     <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br/>
                     <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
+                    {milesTo}
                     <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                     </li>
                 )
             }
             else {
                 return (
-                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>                    
+                    <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>{milesTo}</li>                    
                 )
             }
         }
@@ -201,14 +236,35 @@ class NashData extends Component {
 
     } else if (this.state.searchNameState) {
         const wifiAddresses = this.props.data.map((item, index) => {
+            if (this.props.geolocated === true){
+                milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+                milesTo = milesTo * .6;
+                milesTo = Math.round(milesTo * 100) / 100;
+                milesTo = `${milesTo} miles away`;
+
+            }
+            else {
+                console.log("no geolocation");
+            }
             let lowerData = item.site_name.toLowerCase();
             let lowerSearch = this.props.search.toLowerCase();
             if (lowerData.includes(lowerSearch)) {
                 if(this.state.click === item.site_name && this.state.googleLoaded === true){
+                    if (this.props.geolocated === true){
+                        milesTo = this.getDistanceFromLatLonInKm(this.props.currentLat,this.props.currentLon,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0]);
+                        milesTo = milesTo * .6;
+                        milesTo = Math.round(milesTo * 100) / 100;
+                        milesTo = `${milesTo} miles away`;
+    
+                    }
+                    else {
+                        console.log("no geolocation");
+                    }
                     return (
                         <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={true}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                         <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br />Phone: <span id={"Phone" + index}>{this.state.googlePhone}</span><br />
                         <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
+                        {milesTo}<br />
                         <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                         </li>
     
@@ -220,13 +276,14 @@ class NashData extends Component {
                         <li key={index}><b id={"Name" + index}>{item.site_name}</b><FavoriteIcon fave={this.fave} index={index} phone={false}/><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>
                         <br/><span id={"OpenQ" + index}>{this.state.googleOpen}</span><br/>
                         <span id={"Address" + index}>{item.street_address}</span><br /><span id={"CityName" + index}>{item.city}</span>, <span id={"ZipCode" + index}>{item.zip_code}</span><br />
+                        {milesTo}
                         <center><img id={"Image" + index} src={this.state.imgLink} alt="Location"/></center>
                         </li>
                     )
                 }
                 else {
                     return (
-                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button></li>                    
+                        <li key={index}><b>{item.site_name}</b><br /><Button color="success" onClick={this.grabGoogleData.bind(this,item.mapped_location.coordinates[1],item.mapped_location.coordinates[0],item.site_name)}>More...</Button>{milesTo}</li>                    
                     )
                 }
             }
