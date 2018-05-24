@@ -97,9 +97,11 @@ let Logo = (props) => {
 ---
 
 ### Map
+
 <p align="center">
 <img src="src/images/ReadmeImg/Capture6.PNG" width="400"/>
 </p>
+
 ```javascript
 import React, {Component} from  'react';
 import {GoogleApiWrapper, Map, Marker} from  'google-maps-react';
@@ -125,9 +127,10 @@ apiKey: (API_KEY)
 ```
 ---
 ### Map Markers
-<p align="center">
+<p align="center">	
 <img src="src/images/ReadmeImg/Capture7.PNG" width="400"/>
 </p>
+
 ```javascript
 {
           this.props.data.map((item, index) => (
@@ -202,6 +205,7 @@ componentDidMount(){
 <p align="center">
 <img src="src/images/ReadmeImg/Capture8.PNG" width="250"/>
 </p>
+
 ```javascript
 
 ```
