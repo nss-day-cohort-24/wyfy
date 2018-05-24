@@ -15,7 +15,7 @@ body {
       font-size: 18px;
     height: 30vh;
     position: absolute;
-    bottom: 58px;
+    bottom: 58px; 
   }
   .button-small {
     padding: 5px 10px;  
@@ -26,7 +26,7 @@ body {
       position: relative;
       top: -365px;
       bottom: -300px;
-      height:90vh !important;     
+      height:90vh !important;
   }
   button {
     margin-top: 80px;
@@ -45,16 +45,18 @@ body {
   }
 
   .imageArrow {
-background-image: url('../images/upArrow.png');
+background-image: url('../images/wyfy-arrow.svg');
     height: 50px;
     width: 50px;
     margin-bottom: -25px;
-    margin-top: 20px;
+    margin-top: 45px;
   }
   
   
   .imgtoggle{
-    background-image: url('../images/downArrow.png') !important;
+    background-image: url('../images/wyfy-arrowDown.svg') !important;
     height: 50px;
     width: 50px;
+    margin-top: 1px !important;
+
   }
