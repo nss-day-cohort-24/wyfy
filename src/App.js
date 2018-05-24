@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <div>
         <Navigation search={this.searchName}/>
-        <MapContainer data={this.state.data} />
+        <MapContainer data={this.state.data} search={this.state.searchName}/>
         {/* <NashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded}/> */}
         <MoveNashData search={this.state.searchName} data={this.state.data} loaded={this.state.DataIsLoaded} />
         <BottomNav />
