@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import './Landing.css';
 
 class ModalExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: true
     };
 
     this.toggle = this.toggle.bind(this);
@@ -20,15 +21,13 @@ class ModalExample extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-          <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <ModalHeader toggle={this.toggle} className="modal-title">Welcome to WyFy!</ModalHeader>
+          <ModalBody >
+            Get started by finding your current location!
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            <Button color="success" onClick={this.toggle} className="modal-map-button">View Map</Button>{' '}
           </ModalFooter>
         </Modal>
       </div>
