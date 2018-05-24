@@ -206,8 +206,35 @@ componentDidMount(){
 <img src="src/images/ReadmeImg/Capture8.PNG" width="250"/>
 </p>
 
+#### Geolocation Button
+##### Props
 ```javascript
+constructor(props) {
+        super(props);
+        this.state = {
+            geolocated:false,
+            latitude: null,
+            longitude:null
+        }
 
+        this.getLocation = this.getLocation.bind(this);
+
+      }
+
+      getLocation(coords){
+        this.setState({
+          geolocated:true,
+          latitude: coords.latitude,
+          longitude:coords.longitude
+        })
+        this.props.getLocation(coords);
+    }
+```
+---
+##### Render
+
+```javascript
+<Geolocation getLocation={this.getLocation}/>
 ```
 
 All code and design of Wyfy© were developed by UX UI Design and Front-end Development Students, Cohort 24 2018.
