@@ -1,0 +1,19 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+.modal-content {
+    height: 300px;
+}
+
+.modal-map-button {
+      background-color: #28a745;
+
+}
+
+.modal-title {
+    font-size: 28px;
+}
+
+.modal-title {
+    
+}
+
