@@ -90,6 +90,7 @@ let Logo = (props) => {
 <p align="center">
 <img src="src/images/ReadmeImg/Capture5.PNG" width="400"/>
 </p>
+
 ```javascript
 <Input className="searchBar" type="search" name="search" id="search" placeholder="Search Type..." onKeyUp={this.search.bind(this)}/>
 ```
