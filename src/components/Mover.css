@@ -11,6 +11,7 @@ body {
   }
   .button {
     display: inline-block;
+    width: 100%;
       font-size: 18px;
       padding: 10px 30px; 
     margin-right: 10px;
@@ -43,4 +44,17 @@ body {
   }
   #moverBtn:focus{
     outline: none;
+  }
+
+  .imageArrow {
+background-image: url('../images/downArrow.png');
+    height: 50px;
+    width: 50px;
+  }
+  
+  
+  .imgtoggle{
+    background-image: url('../images/upArrow.png') !important;
+    height: 50px;
+    width: 50px;
   }
