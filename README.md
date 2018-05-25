@@ -3,7 +3,7 @@
 
 ### Meet the Team
 <p align="center">
-<img src="src/images/ReadmeImg/wyfy-team.png" width="700"/>
+<img src="src/images/ReadmeImg/wyty-team.png" width="700"/>
 </p>
 
 ---
