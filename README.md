@@ -108,8 +108,9 @@ let Logo = (props) => {
 
 ### Alert
 <p align="center">
-<img src="src/images/ReadmeImg/Capture15.PNG" height="500"/>
+<img src="src/images/ReadmeImg/Capture16.PNG" height="500"/>
 </p>
+
 ```javascript
 class Reminder extends React.Component {
     // Event listener to close wifi reminder alert.
@@ -142,9 +143,9 @@ constructor(props) {
     </div>
   )
 }
-
 ```
 ---
+
 ### Map
 
 <p align="center">
@@ -206,7 +207,7 @@ apiKey: (API_KEY)
 <Geolocation getLocation={this.getLocation}/>
 ```
 
-#### 
+#### Component
 ```javascript
 import { geolocated } from  'react-geolocated';
 
@@ -341,7 +342,7 @@ render() {
 ### BottomNav
 
 <p align="center">
-<img src="src/images/ReadmeImg/bottomnav.png" width="250"/>
+<img src="src/images/ReadmeImg/bottomnav.png" width="400"/>
 </p>
 
 ```javascript
@@ -370,7 +371,7 @@ render() {
 #### User Saves Favorites to Local Storage
 
 <p align="center">
-<img src="src/images/ReadmeImg/Capture15.PNG" height="400"/>
+<img src="src/images/ReadmeImg/Capture15.PNG" height="200"/>
 </p>
 
 ```javascript
