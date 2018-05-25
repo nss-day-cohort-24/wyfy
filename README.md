@@ -92,7 +92,7 @@ let Logo = (props) => {
 
 ### Search
 <p align="center">
-<img src="src/images/ReadmeImg/Capture5.PNG" width="400"/>
+<img src="src/images/ReadmeImg/Capture5.PNG" width="200"/>
 </p>
 
 ```javascript
@@ -101,7 +101,7 @@ let Logo = (props) => {
 
 #### Searching By Location Provides the User with All Locations Matching the Keyword(s) and Updates the Map
 <p align="center">
-<img src="src/images/Capture13.PNG" width="400"/>
+<img src="src/images/ReadmeImg/Capture13.PNG" height="500"/>
 </p>
 ---
 
@@ -153,6 +153,11 @@ apiKey: (API_KEY)
 #### Geolocation Button
 <p align="center">
 <img src="src/images/wyfy-target.svg" width="250"/>
+</p>
+
+#### Geolocation Finds the User Location and Zooms In the Map, Allowing User to Find Locations By Proximity
+<p align="center">
+<img src="src/images/ReadmeImg/Capture11.PNG" height="500"/>
 </p>
 
 ```javascript
@@ -211,6 +216,20 @@ componentDidMount(){
 }
 ```
 ---
+
+### List
+
+<p align="center">
+<img src="src/images/ReadmeImg/Capture9.PNG" height="500"/>
+</p>
+
+<p align="center">
+<img src="src/images/ReadmeImg/Capture10.PNG" height="500"/>
+</p>
+
+<p align="center">
+<img src="src/images/ReadmeImg/Capture12.PNG" height="500"/>
+</p>
 ### BottomNav
 <p align="center">
 <img src="src/images/ReadmeImg/bottomnav.png" width="250"/>
