@@ -22,7 +22,7 @@ constructor(props) {
     componentDidMount (){
         setTimeout(() => {
      this.setState({ visible: false });     
-        }, 5000)
+        }, 10000)
     }
 
   render () {
