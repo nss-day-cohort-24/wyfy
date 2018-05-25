@@ -75,7 +75,7 @@
 ## React Component Overview
 ---
 
-##### Logo
+### Logo
 <p align="center">
 <img src="src/images/wyfy-logo4.png" width="400"/>
 </p>
@@ -90,7 +90,7 @@ let Logo = (props) => {
 }
 ```
 
-##### Search
+### Search
 <p align="center">
 <img src="src/images/ReadmeImg/Capture5.PNG" width="400"/>
 </p>
@@ -98,6 +98,11 @@ let Logo = (props) => {
 ```javascript
 <Input className="searchBar" type="search" name="search" id="search" placeholder="Search Type..." onKeyUp={this.search.bind(this)}/>
 ```
+
+#### Searching By Location Provides the User with All Locations Matching the Keyword(s) and Updates the Map
+<p align="center">
+<img src="src/images/Capture13.PNG" width="400"/>
+</p>
 ---
 
 ### Map
