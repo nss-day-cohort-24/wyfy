@@ -3,7 +3,7 @@
 
 ### Meet the Team
 <p align="center">
-<img src="src/images/ReadmeImg/wyty-team.png" width="700"/>
+<img src="src/images/ReadmeImg/wyfy-team.png" width="700"/>
 </p>
 
 ---
@@ -208,7 +208,7 @@ componentDidMount(){
 ---
 ### BottomNav
 <p align="center">
-<img src="src/images/ReadmeImg/Capture8.PNG" width="250"/>
+<img src="src/images/ReadmeImg/bottomnav.png" width="250"/>
 </p>
 
 ##### Props
