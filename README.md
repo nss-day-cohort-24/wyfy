@@ -144,6 +144,12 @@ apiKey: (API_KEY)
 ```
 ---
 ### Geolocation
+
+#### Geolocation Button
+<p align="center">
+<img src="src/images/wyfy-target.svg" width="250"/>
+</p>
+
 ```javascript
 import { geolocated } from  'react-geolocated';
 
@@ -203,11 +209,6 @@ componentDidMount(){
 ### BottomNav
 <p align="center">
 <img src="src/images/ReadmeImg/Capture8.PNG" width="250"/>
-</p>
-
-#### Geolocation Button
-<p align="center">
-<img src="src/images/wyfy-target.svg" width="250"/>
 </p>
 
 ##### Props
