@@ -160,6 +160,13 @@ apiKey: (API_KEY)
 <img src="src/images/ReadmeImg/Capture11.PNG" height="500"/>
 </p>
 
+#### Render
+
+```javascript
+<Geolocation getLocation={this.getLocation}/>
+```
+
+#### 
 ```javascript
 import { geolocated } from  'react-geolocated';
 
@@ -180,6 +187,32 @@ class  Geolocation  extends  React.Component {
 		)
 	}
 }
+```
+---
+
+##### Props
+
+```javascript
+constructor(props) {
+        super(props);
+        this.state = {
+            geolocated:false,
+            latitude: null,
+            longitude:null
+        }
+
+        this.getLocation = this.getLocation.bind(this);
+
+      }
+
+      getLocation(coords){
+        this.setState({
+          geolocated:true,
+          latitude: coords.latitude,
+          longitude:coords.longitude
+        })
+        this.props.getLocation(coords);
+    }
 ```
 ---
 
@@ -217,53 +250,32 @@ componentDidMount(){
 ```
 ---
 
-### List
+### List View
+
+####  List View Before Geolocation and Extension
 
 <p align="center">
-<img src="src/images/ReadmeImg/Capture9.PNG" height="500"/>
+<img src="src/images/ReadmeImg/Capture9.PNG" width="250"/>
 </p>
+
+#### Extended List View
 
 <p align="center">
 <img src="src/images/ReadmeImg/Capture10.PNG" height="500"/>
 </p>
 
+#### Extended List View with Geolocation
+
 <p align="center">
 <img src="src/images/ReadmeImg/Capture12.PNG" height="500"/>
 </p>
+---
+
 ### BottomNav
+
 <p align="center">
 <img src="src/images/ReadmeImg/bottomnav.png" width="250"/>
 </p>
 
-##### Props
-
-```javascript
-constructor(props) {
-        super(props);
-        this.state = {
-            geolocated:false,
-            latitude: null,
-            longitude:null
-        }
-
-        this.getLocation = this.getLocation.bind(this);
-
-      }
-
-      getLocation(coords){
-        this.setState({
-          geolocated:true,
-          latitude: coords.latitude,
-          longitude:coords.longitude
-        })
-        this.props.getLocation(coords);
-    }
-```
----
-##### Render
-
-```javascript
-<Geolocation getLocation={this.getLocation}/>
-```
 
 All code and design of Wyfy© were developed by UX UI Design and Front-end Development Students, Cohort 24 2018.
