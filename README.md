@@ -366,7 +366,7 @@ render() {
 #### Favorite Icon
 
 <p align="center">
-<img src="src/images/wyfy-favorite.svg" width="150"/>
+<img src="src/images/wyfy-favorite.svg" width="250"/>
 </p>
 
 #### User Saves Favorites to Local Storage
