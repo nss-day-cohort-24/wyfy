@@ -129,12 +129,7 @@ export default  GoogleApiWrapper({
 apiKey: (API_KEY)
 })(MapContainer)
 ```
----
 ### Map Markers
-<p align="center">	
-<img src="src/images/ReadmeImg/Capture7.PNG" width="400"/>
-</p>
-
 ```javascript
 {
           this.props.data.map((item, index) => (
