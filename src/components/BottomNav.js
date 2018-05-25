@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './bottomNav.css';
+import './BottomNav.css';
 // import Top from '../images/wyfy-top.svg';
 import Fav from '../images/wyfy-favs.svg';
 // import Filter from '../images/wyfy-filter.svg';
