@@ -104,6 +104,7 @@ let Logo = (props) => {
 <p align="center">
 <img src="src/images/ReadmeImg/Capture13.PNG" height="500"/>
 </p>
+
 ---
 
 ### Alert
@@ -365,7 +366,7 @@ render() {
 #### Favorite Icon
 
 <p align="center">
-<img src="src/images/fav-icon.svg" width="250"/>
+<img src="src/images/fav-icon.svg" width="150"/>
 </p>
 
 #### User Saves Favorites to Local Storage
