@@ -93,7 +93,7 @@ let Logo = (props) => {
 
 ### Search
 <p align="center">
-<img src="src/images/ReadmeImg/Capture5.PNG" width="200"/>
+<img src="src/images/ReadmeImg/Capture5.PNG" width="400"/>
 </p>
 
 ```javascript
@@ -259,12 +259,39 @@ componentDidMount(){
 <img src="src/images/ReadmeImg/Capture9.PNG" width="250"/>
 </p>
 
+```javascript
+ return(
+
+            <div className="listDiv margin-top d-flex justify-content-left">
+            <ul>
+            {wifiAddresses}
+            </ul>
+
+            </div>
+```
+
 #### Extended List View
 
 <p align="center">
 <img src="src/images/ReadmeImg/Capture10.PNG" height="500"/>
 </p>
 
+```javascript
+render() {
+      return (
+          <div>
+              <div className={ this.state.buttonCondition ? "button toggled" : "button" }>
+        <ButtonChild toggleClassName={ this.click }>
+        </ButtonChild>
+        
+    <NashData search={this.props.search} data={this.props.data} loaded={this.props.loaded} currentLat={this.props.currentLat} currentLon={this.props.currentLon} geolocated={this.props.geolocated}/>
+
+        </div>
+        </div>
+      )
+    }
+    ```
+    
 #### Extended List View with Geolocation
 
 <p align="center">
