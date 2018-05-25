@@ -290,7 +290,7 @@ render() {
         </div>
       )
     }
-    ```
+```
     
 #### Extended List View with Geolocation
 
@@ -305,5 +305,56 @@ render() {
 <img src="src/images/ReadmeImg/bottomnav.png" width="250"/>
 </p>
 
+```javascript
+render() {
+        return(
+            <div className="footer absoluteFooter">
+                <center>
+                <img src={Fav} alt="search icon" className="icon2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Geolocation getLocation={this.getLocation}/>
+                </center>
+
+            </div>
+        )
+    }
+```
+---
+
+### Favorite
+
+#### Favorite Icon
+
+<p align="center">
+<img src="src/images/fav-icon.svg" width="250"/>
+</p>
+
+#### User Saves Favorites to Local Storage
+
+<p align="center">
+<img src="src/images/ReadmeImg/Capture15.PNG" height="400"/>
+</p>
+
+```javascript
+//creates an empty array if local storage doesn't exist
+        const parseLibrary = JSON.parse(localStorage.getItem('favorites'));
+        if (!parseLibrary) {
+            let faveItem = [];
+            localStorage.setItem('favorites', JSON.stringify(faveItem));
+            this.setState({
+                favoriteStorage: faveItem
+            })
+        } else {
+            let favoriteStorage = JSON.parse(localStorage.getItem('favorites'));
+            this.setState({
+                favoriteStorage: favoriteStorage
+            })
+        }
+    }
+```
+
+#### Render (Coming Soon!)
+---
+
+## Thank You for Checkout Out Our Work!
 
 All code and design of Wyfy© were developed by UX UI Design and Front-end Development Students, Cohort 24 2018.
