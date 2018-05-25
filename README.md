@@ -1,9 +1,12 @@
 ![WyFy!](src/images/wyfy-logo4.png "Wyfy")
 ##  Your app to finding local free wifi hotspots based on your location or zipcode
 
+### Meet the Team
+<p align="center">
+<img src="src/images/ReadmeImg/wyfy-team.png" width="700"/>
+</p>
 
-  
-
+---
 ###  How to - Install WyFy
 
 1.  Clone the Wyfy Repo to your local server using `git clone https://github.com/nss-day-cohort-24/wyfy.git` in your terminal
@@ -67,6 +70,7 @@
 2. Location List View Ascending By Distance From User and Displayed
 3. User Can Upload Images of Location
 4. Include Private Businesses & Volunteers in Future Locations
+5. Capture User Data 
 ---
 ## React Component Overview
 ---
