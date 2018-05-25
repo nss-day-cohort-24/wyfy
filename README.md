@@ -71,6 +71,7 @@
 3. User Can Upload Images of Location
 4. Include Private Businesses & Volunteers in Future Locations
 5. Capture User Data 
+6. Render Favorites (Currently Saving To Local Storage)
 ---
 ## React Component Overview
 ---
