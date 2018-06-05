@@ -396,6 +396,6 @@ render() {
 #### Render (Coming Soon!)
 ---
 
-## Thank You for Checkout Out Our Work!
+## Thank You for Checking Out Our Work!
 
 All code and design of Wyfy© were developed by UX UI Design and Front-end Development Students, Cohort 24 2018.
